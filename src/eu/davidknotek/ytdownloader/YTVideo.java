@@ -6,8 +6,13 @@ public class YTVideo {
     private int formatCode;
     private String extension;
     private String resolution;
-    private VideoList.Typ typ;
     private int fileSize;
+    private Typ typ;
+
+
+    enum Typ {
+        VIDEO, VIDEO_ONLY, AUDIO_ONLY
+    }
 
     public YTVideo() {
     }
@@ -44,11 +49,11 @@ public class YTVideo {
         this.resolution = resolution;
     }
 
-    public VideoList.Typ getTyp() {
+    public Typ getTyp() {
         return typ;
     }
 
-    public void setTyp(VideoList.Typ typ) {
+    public void setTyp(Typ typ) {
         this.typ = typ;
     }
 

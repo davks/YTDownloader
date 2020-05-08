@@ -9,8 +9,6 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Controller implements Initializable {
     @FXML
@@ -25,26 +23,24 @@ public class Controller implements Initializable {
     @FXML
     private Label lblSmazat;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private ServiceAnalyzer serviceAnalyzer;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        serviceAnalyzer = new ServiceAnalyzer(lblNazev);
     }
 
     @FXML
     void onAnalyzovat(ActionEvent event) {
-        VideoList videoList = new VideoList(edtUrl.getText(), VideoList.SpustitPrikaz.ANALYZOVAT);
-        videoList.setOnRunning((successesEvent) -> {
-            lblNazev.setText("Začínám...");
-            lblSmazat.setText("");
-        });
+        String url = edtUrl.getText();
+        lblNazev.setText("");
+        if (!url.trim().equals("")) {
+            serviceAnalyzer.setUrl(url);
+            serviceAnalyzer.restart();
+            lblNazev.textProperty().bind(serviceAnalyzer.messageProperty());
+        }
 
-        videoList.setOnSucceeded((successedEvent) -> {
-            lblNazev.setText(videoList.getYtVideo().getName());
-            lblSmazat.setText(videoList.getErrors().toString());
-        });
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.execute(videoList);
-        executorService.shutdown();
     }
 }
