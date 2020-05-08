@@ -6,24 +6,29 @@ import javafx.scene.control.Label;
 
 public class ServiceAnalyzer extends Service<String> {
 
+    private Label lblNazev;
     private VideoAnalyzer videoAnalyzer;
     private String url;
 
     public ServiceAnalyzer(Label lblNazev) {
-//        videoAnalyzer = new VideoAnalyzer();
-
-        setOnSucceeded(workerStateEvent -> {
-            lblNazev.textProperty().unbind();
-            lblNazev.setText(videoAnalyzer.getYtVideo().getName());
-        });
-
-        setOnCancelled(workerStateEvent -> {
-            lblNazev.textProperty().unbind();
-        });
+        this.lblNazev = lblNazev;
     }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    protected void succeeded() {
+        super.succeeded();
+        lblNazev.textProperty().unbind();
+        lblNazev.setText(videoAnalyzer.getYtVideo().getName());
+    }
+
+    @Override
+    protected void cancelled() {
+        super.cancelled();
+        lblNazev.textProperty().unbind();
     }
 
     @Override
