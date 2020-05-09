@@ -15,7 +15,7 @@ public class Main extends Application {
         Controller controller = loader.getController();
 
         primaryStage.setTitle("YTDownloader");
-        primaryStage.setScene(new Scene(root, 600, 275));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

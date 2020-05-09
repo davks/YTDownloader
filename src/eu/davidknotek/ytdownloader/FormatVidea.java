@@ -1,12 +1,12 @@
 package eu.davidknotek.ytdownloader;
 
-public class YTVideo {
+public class FormatVidea {
 
-    private String name;
-    private int formatCode;
+    private String formatCode;
     private String extension;
     private String resolution;
-    private int fileSize;
+    private String fps;
+    private String fileSize;
     private Typ typ;
 
 
@@ -14,22 +14,22 @@ public class YTVideo {
         VIDEO, VIDEO_ONLY, AUDIO_ONLY
     }
 
-    public YTVideo() {
+    public FormatVidea() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFps() {
+        return fps;
     }
 
-    public String getName() {
-        return name;
+    public void setFps(String fps) {
+        this.fps = fps;
     }
 
-    public int getFormatCode() {
+    public String getFormatCode() {
         return formatCode;
     }
 
-    public void setFormatCode(int formatCode) {
+    public void setFormatCode(String formatCode) {
         this.formatCode = formatCode;
     }
 
@@ -57,11 +57,11 @@ public class YTVideo {
         this.typ = typ;
     }
 
-    public int getFileSize() {
+    public String getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(int fileSize) {
+    public void setFileSize(String fileSize) {
         this.fileSize = fileSize;
     }
 }
