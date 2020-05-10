@@ -1,0 +1,16 @@
+Konvertování videa:
+video.mp4 / audio.m4a = new_video.mp4 -> copy copy
+**video.mp4 / audio.m4a = new_video.webm -> copy copy
+
+video.mp4 / audio.webm = new_video.webm -> copy copy
+*video.mp4 / audio.webm = new_video.mp4 -> -strict -2 copy copy
+
+video.webm / audion.m4a = new_video.mp4 -> copy copy
+**video.webm / audion.m4a = new_video.webm -> copy copy
+
+video.webm / audion.webm = new_video.webm -> copy copy
+**video.webm / audion.webm = new_video.mp4 -> copy copy
+
+==========================================================
+** NEJDE
+* Pouze -strict -2

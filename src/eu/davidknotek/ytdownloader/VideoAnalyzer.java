@@ -1,5 +1,6 @@
 package eu.davidknotek.ytdownloader;
 
+import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 
 import java.io.BufferedReader;
@@ -10,11 +11,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VideoAnalyzer extends Task<String> {
+public class VideoAnalyzer extends Task<List<FormatVidea>> {
 
     private String url;
     private final List<String> errors;
-    private final List<FormatVidea> seznamFormatu; //seznam formatu jednoho videa
+    private final List<FormatVidea> allFormatList; //seznam formatu jednoho videa
 
     /**
      * Konstruktor. Přivede url.
@@ -22,22 +23,21 @@ public class VideoAnalyzer extends Task<String> {
     public VideoAnalyzer(String url) {
         this.url = url;
         errors = new ArrayList<>();
-        seznamFormatu = new ArrayList<>();
+        allFormatList = FXCollections.observableArrayList();
     }
 
     @Override
-    protected String call() throws Exception {
-        String zprava = "Analýza URL proběhla v pořádku.";
+    protected List<FormatVidea> call() throws Exception {
         updateMessage("Analyzuji URL, čekejte prosím...");
-
         String nazevVidea = zjistitNazevVidea();
         if (nazevVidea != null) {
             updateTitle(nazevVidea);
             analyzovatURL();
+            updateMessage("Analýza URL proběhla v pořádku.");
         } else {
-            zprava = "Analýza URL neproběhla. Pravděpodobně jste zadali nesprávnou adresu.";
+            updateMessage("Analýza URL neproběhla. Překontrolujte adresu videa.");
         }
-        return zprava;
+        return allFormatList;
     }
 
     public void setUrl(String url) {
@@ -48,8 +48,8 @@ public class VideoAnalyzer extends Task<String> {
         return errors;
     }
 
-    public List<FormatVidea> getSeznamFormatu() {
-        return seznamFormatu;
+    public List<FormatVidea> getAllFormatList() {
+        return allFormatList;
     }
 
     /*====================================
@@ -76,6 +76,7 @@ public class VideoAnalyzer extends Task<String> {
         Pattern pResolution = Pattern.compile(" ([0-9]{3,4}x[0-9]{3,4}) ");
         Pattern pFPS = Pattern.compile(" ([0-9]{2,3}fps),");
         Pattern pFileSize = Pattern.compile(" ([0-9]{1,3}\\.[0-9]{1,2}(MiB|GiB))");
+        Pattern pAudioQuality = Pattern.compile(" (\\([0-9]{5}Hz\\))");
 
         for (String line : lines) {
             if (isCancelled()) {
@@ -100,12 +101,15 @@ public class VideoAnalyzer extends Task<String> {
             // FileSize
             matcher = pFileSize.matcher(line);
             formatVidea.setFileSize(matcher.find() ? matcher.group(1) : "");
+            // AudioQuality
+            matcher = pAudioQuality.matcher(line);
+            formatVidea.setAudioQuality(matcher.find() ? matcher.group(1) : "");
             // FileTyp
             if (line.contains("audio only")) formatVidea.setTyp(FormatVidea.Typ.AUDIO_ONLY);
             else if (line.contains("video only")) formatVidea.setTyp(FormatVidea.Typ.VIDEO_ONLY);
             else formatVidea.setTyp(FormatVidea.Typ.VIDEO);
 
-            seznamFormatu.add(formatVidea);
+            allFormatList.add(formatVidea);
         }
 
 //        for (FormatVidea format : seznamFormatu) {

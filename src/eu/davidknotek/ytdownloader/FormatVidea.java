@@ -8,6 +8,7 @@ public class FormatVidea {
     private String fps;
     private String fileSize;
     private Typ typ;
+    private String audioQuality;
 
 
     enum Typ {
@@ -15,6 +16,14 @@ public class FormatVidea {
     }
 
     public FormatVidea() {
+    }
+
+    public String getAudioQuality() {
+        return audioQuality;
+    }
+
+    public void setAudioQuality(String audioQuality) {
+        this.audioQuality = audioQuality;
     }
 
     public String getFps() {
