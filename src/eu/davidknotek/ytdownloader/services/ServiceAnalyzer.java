@@ -1,5 +1,7 @@
-package eu.davidknotek.ytdownloader;
+package eu.davidknotek.ytdownloader.services;
 
+import eu.davidknotek.ytdownloader.typy.FormatVidea;
+import eu.davidknotek.ytdownloader.tasks.VideoAnalyzer;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 

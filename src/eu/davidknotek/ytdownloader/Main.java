@@ -1,5 +1,6 @@
 package eu.davidknotek.ytdownloader;
 
+import eu.davidknotek.ytdownloader.gui.MainWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +11,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main_window.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/main_window.fxml"));
         Parent root = (Parent) loader.load();
-        Controller controller = loader.getController();
+        MainWindowController controller = loader.getController();
 
         primaryStage.setTitle("YTDownloader");
         primaryStage.setScene(new Scene(root));

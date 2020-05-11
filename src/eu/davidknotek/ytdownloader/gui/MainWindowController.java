@@ -1,6 +1,8 @@
-package eu.davidknotek.ytdownloader;
+package eu.davidknotek.ytdownloader.gui;
 
-import com.sun.media.jfxmedia.control.VideoFormat;
+import eu.davidknotek.ytdownloader.typy.FormatVidea;
+import eu.davidknotek.ytdownloader.enums.TypVidea;
+import eu.davidknotek.ytdownloader.services.ServiceAnalyzer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
-    private final List<FormatVidea> videoFormatList = new ArrayList<>();
-    private final List<FormatVidea> audioFormatList = new ArrayList<>();
+public class MainWindowController implements Initializable {
+    private final List<FormatVidea> seznamVideoFormatu = new ArrayList<>();
+    private final List<FormatVidea> seznamAudioFormatu = new ArrayList<>();
 
     private final ObservableList<String> onlyVideoList = FXCollections.observableArrayList();
     private final ObservableList<String> onlyAudioList = FXCollections.observableArrayList();
@@ -48,7 +50,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cbxVideo.setItems(onlyVideoList);
         cbxAudio.setItems(onlyAudioList);
-        unbindFromWorker();
+        unbind();
     }
 
     @FXML
@@ -87,14 +89,14 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void onChooseVideoFormat(ActionEvent event) {
+    void onVybratVideoFormat(ActionEvent event) {
         onlyAudioList.clear();
         int index = cbxVideo.getSelectionModel().getSelectedIndex();
         if (index > -1) {
-            FormatVidea vybranyFormat = videoFormatList.get(index);
-            if (vybranyFormat.getTyp() == FormatVidea.Typ.VIDEO_ONLY) {
+            FormatVidea vybranyFormat = seznamVideoFormatu.get(index);
+            if (vybranyFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
                 cbxAudio.setDisable(false);
-                showAudioList();
+                zobrazitSeznamAudia();
             } else {
                 cbxAudio.setDisable(true);
             }
@@ -110,14 +112,14 @@ public class Controller implements Initializable {
     // Soukromé metody
     ///////////////////////////////////////////////////////
 
-    private void unbindFromWorker() {
+    private void unbind() {
         serviceAnalyzer.setOnSucceeded(workerStateEvent -> {
             lblNazevVidea.textProperty().unbind();
             lblZprava.textProperty().unbind();
             pbUkazatel.progressProperty().unbind();
             pbUkazatel.setProgress(0.0);
-            classifyFormatList(serviceAnalyzer.getValue());
-            showVideoList();
+            rozstriditSeznamFormatu(serviceAnalyzer.getValue());
+            zobrazitSeznamVidea();
         });
 
         serviceAnalyzer.setOnCancelled(workerStateEvent -> {
@@ -137,20 +139,20 @@ public class Controller implements Initializable {
         });
     }
 
-    private void classifyFormatList(List<FormatVidea> allFormatList) {
-        audioFormatList.clear();
-        videoFormatList.clear();
+    private void rozstriditSeznamFormatu(List<FormatVidea> allFormatList) {
+        seznamAudioFormatu.clear();
+        seznamVideoFormatu.clear();
         for (FormatVidea format : allFormatList) {
-            if (format.getTyp() == FormatVidea.Typ.AUDIO_ONLY) {
-                audioFormatList.add(format);
+            if (format.getTypVidea() == TypVidea.AUDIO_ONLY) {
+                seznamAudioFormatu.add(format);
             } else {
-                videoFormatList.add(format);
+                seznamVideoFormatu.add(format);
             }
         }
     }
 
-    private void showVideoList() {
-        for (FormatVidea format : videoFormatList) {
+    private void zobrazitSeznamVidea() {
+        for (FormatVidea format : seznamVideoFormatu) {
             if (!format.getResolution().equals("")) {
                 String fps = format.getFps().equals("") ? "*" : format.getFps();
                 String fileSize = format.getFileSize().equals("") ? "*" : format.getFileSize();
@@ -163,8 +165,8 @@ public class Controller implements Initializable {
         cbxVideo.getSelectionModel().selectFirst();
     }
 
-    private void showAudioList() {
-        for (FormatVidea format : audioFormatList) {
+    private void zobrazitSeznamAudia() {
+        for (FormatVidea format : seznamAudioFormatu) {
             String fileSize = format.getFileSize().equals("") ? "*" : format.getFileSize();
             onlyAudioList.add(format.getAudioQuality() + " / " +
                     format.getExtension() + " / " +

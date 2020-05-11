@@ -1,4 +1,6 @@
-package eu.davidknotek.ytdownloader;
+package eu.davidknotek.ytdownloader.typy;
+
+import eu.davidknotek.ytdownloader.enums.TypVidea;
 
 public class FormatVidea {
 
@@ -7,13 +9,9 @@ public class FormatVidea {
     private String resolution;
     private String fps;
     private String fileSize;
-    private Typ typ;
     private String audioQuality;
+    private TypVidea typVidea;
 
-
-    enum Typ {
-        VIDEO, VIDEO_ONLY, AUDIO_ONLY
-    }
 
     public FormatVidea() {
     }
@@ -58,12 +56,12 @@ public class FormatVidea {
         this.resolution = resolution;
     }
 
-    public Typ getTyp() {
-        return typ;
+    public TypVidea getTypVidea() {
+        return typVidea;
     }
 
-    public void setTyp(Typ typ) {
-        this.typ = typ;
+    public void setTypVidea(TypVidea typVidea) {
+        this.typVidea = typVidea;
     }
 
     public String getFileSize() {

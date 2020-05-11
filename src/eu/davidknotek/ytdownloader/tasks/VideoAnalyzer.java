@@ -1,5 +1,7 @@
-package eu.davidknotek.ytdownloader;
+package eu.davidknotek.ytdownloader.tasks;
 
+import eu.davidknotek.ytdownloader.typy.FormatVidea;
+import eu.davidknotek.ytdownloader.enums.TypVidea;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 
@@ -105,9 +107,9 @@ public class VideoAnalyzer extends Task<List<FormatVidea>> {
             matcher = pAudioQuality.matcher(line);
             formatVidea.setAudioQuality(matcher.find() ? matcher.group(1) : "");
             // FileTyp
-            if (line.contains("audio only")) formatVidea.setTyp(FormatVidea.Typ.AUDIO_ONLY);
-            else if (line.contains("video only")) formatVidea.setTyp(FormatVidea.Typ.VIDEO_ONLY);
-            else formatVidea.setTyp(FormatVidea.Typ.VIDEO);
+            if (line.contains("audio only")) formatVidea.setTypVidea(TypVidea.AUDIO_ONLY);
+            else if (line.contains("video only")) formatVidea.setTypVidea(TypVidea.VIDEO_ONLY);
+            else formatVidea.setTypVidea(TypVidea.VIDEO);
 
             allFormatList.add(formatVidea);
         }
