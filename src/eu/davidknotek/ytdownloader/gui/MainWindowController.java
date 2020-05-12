@@ -3,6 +3,8 @@ package eu.davidknotek.ytdownloader.gui;
 import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.enums.TypVidea;
 import eu.davidknotek.ytdownloader.services.ServiceAnalyzer;
+import eu.davidknotek.ytdownloader.typy.Fronta;
+import eu.davidknotek.ytdownloader.typy.VideoKeStazeni;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +25,16 @@ public class MainWindowController implements Initializable {
 
     private final ObservableList<String> onlyVideoList = FXCollections.observableArrayList();
     private final ObservableList<String> onlyAudioList = FXCollections.observableArrayList();
+
+    private final ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
+    private final Fronta fronta = new Fronta(seznamVideiKeStazeni);
+
     private final ServiceAnalyzer serviceAnalyzer = new ServiceAnalyzer();
+
+    private FormatVidea vybranyVideoFormat;
+    private FormatVidea vybranyAudioFormat;
+
+    private boolean povolitVkladaniDoFronty = false;
 
     @FXML
     private TextField edtUrl;
@@ -38,6 +49,9 @@ public class MainWindowController implements Initializable {
     private ComboBox<String> cbxAudio;
 
     @FXML
+    private ListView<VideoKeStazeni> lvFronta;
+
+    @FXML
     private TextField tfCestaUlozit;
 
     @FXML
@@ -50,9 +64,16 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cbxVideo.setItems(onlyVideoList);
         cbxAudio.setItems(onlyAudioList);
+        lvFronta.setItems(seznamVideiKeStazeni);
+
         unbind();
+        vlastniListViewModel();
     }
 
+    /**
+     * Analyzuje se URL YT videa
+     * @param event událost
+     */
     @FXML
     void onAnalyzovat(ActionEvent event) {
         String url = edtUrl.getText();
@@ -68,13 +89,26 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Vložíme vybrané video a vybrané audio do fronty.
+     * @param event událost
+     */
     @FXML
-    void onDoFronty(ActionEvent event) {
-        //TODO vlozeni do fronty
+    void onVlozitDoFronty(ActionEvent event) {
+        if (povolitVkladaniDoFronty) {
+            VideoKeStazeni videoKeStazeni = new VideoKeStazeni();
+            videoKeStazeni.setVideoName(lblNazevVidea.getText());
+            videoKeStazeni.setVideoCode(vybranyVideoFormat.getFormatCode());
+            videoKeStazeni.setAudioCode(vybranyAudioFormat.getFormatCode());
+            videoKeStazeni.setResolution(vybranyVideoFormat.getResolution());
+            String typ = vybranyAudioFormat.getExtension().equals("m4a") ? typ = "mp4" : vybranyAudioFormat.getExtension();
+            videoKeStazeni.setExtension(typ);
+            fronta.vlozitDoFronty(videoKeStazeni);
+        }
     }
 
     @FXML
-    void onPrerusit(ActionEvent event) {
+    void onPrerusitStahovani(ActionEvent event) {
         //TODO prerusit stahovani
     }
 
@@ -89,12 +123,31 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
+    void onOdstranitZFronty(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onPresunoutDolu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onPresunoutNahoru(ActionEvent event) {
+
+    }
+
+    /**
+     * Reakce na výběr formátu z comboboxu. Vybírá se video.
+     * @param event událost
+     */
+    @FXML
     void onVybratVideoFormat(ActionEvent event) {
         onlyAudioList.clear();
         int index = cbxVideo.getSelectionModel().getSelectedIndex();
         if (index > -1) {
-            FormatVidea vybranyFormat = seznamVideoFormatu.get(index);
-            if (vybranyFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
+            vybranyVideoFormat = seznamVideoFormatu.get(index);
+            if (vybranyVideoFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
                 cbxAudio.setDisable(false);
                 zobrazitSeznamAudia();
             } else {
@@ -103,6 +156,22 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Reakce na výběr formátu z comboboxu. Vybírá se audio.
+     * @param event událost
+     */
+    @FXML
+    void onVybratAudioFormat(ActionEvent event) {
+        int index = cbxAudio.getSelectionModel().getSelectedIndex();
+        if (index > - 1) {
+            vybranyAudioFormat = seznamAudioFormatu.get(index);
+        }
+    }
+
+    /**
+     * Ukončení aplikace
+     * @param event událost
+     */
     @FXML
     void onKonec(ActionEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
@@ -112,6 +181,10 @@ public class MainWindowController implements Initializable {
     // Soukromé metody
     ///////////////////////////////////////////////////////
 
+    /**
+     * Zrušení provázanosti s druhým vláknem, který analyzuje URL.
+     * Reakce na skončení vlákna. Buď se to podařilo, přerušili jsme to, či nikoliv.
+     */
     private void unbind() {
         serviceAnalyzer.setOnSucceeded(workerStateEvent -> {
             lblNazevVidea.textProperty().unbind();
@@ -120,6 +193,7 @@ public class MainWindowController implements Initializable {
             pbUkazatel.setProgress(0.0);
             rozstriditSeznamFormatu(serviceAnalyzer.getValue());
             zobrazitSeznamVidea();
+            povolitVkladaniDoFronty = true;
         });
 
         serviceAnalyzer.setOnCancelled(workerStateEvent -> {
@@ -128,6 +202,7 @@ public class MainWindowController implements Initializable {
             pbUkazatel.progressProperty().unbind();
             lblZprava.setText("Analýza byla přerušena.");
             pbUkazatel.setProgress(0.0);
+            povolitVkladaniDoFronty = false;
         });
 
         serviceAnalyzer.setOnFailed(workerStateEvent -> {
@@ -136,9 +211,15 @@ public class MainWindowController implements Initializable {
             pbUkazatel.progressProperty().unbind();
             lblZprava.setText("Vyskytl se problém při analýze URL.");
             pbUkazatel.setProgress(0.0);
+            povolitVkladaniDoFronty = false;
         });
     }
 
+    /**
+     * Po analýze URL nám vznikl seznam formátů, který je potřeba rozstřídit
+     * na video a audio formáty.
+     * @param allFormatList kompletní seznam formátů
+     */
     private void rozstriditSeznamFormatu(List<FormatVidea> allFormatList) {
         seznamAudioFormatu.clear();
         seznamVideoFormatu.clear();
@@ -151,7 +232,11 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * V comboboxu zobrazíme seznam video formátů.
+     */
     private void zobrazitSeznamVidea() {
+        // TODO predelat s vlastnim modelem
         for (FormatVidea format : seznamVideoFormatu) {
             if (!format.getResolution().equals("")) {
                 String fps = format.getFps().equals("") ? "*" : format.getFps();
@@ -165,7 +250,11 @@ public class MainWindowController implements Initializable {
         cbxVideo.getSelectionModel().selectFirst();
     }
 
+    /**
+     * V comboboxu zobrazíme seznam audio formátů.
+     */
     private void zobrazitSeznamAudia() {
+        // TODO predelat s vlastnim modelem
         for (FormatVidea format : seznamAudioFormatu) {
             String fileSize = format.getFileSize().equals("") ? "*" : format.getFileSize();
             onlyAudioList.add(format.getAudioQuality() + " / " +
@@ -173,5 +262,25 @@ public class MainWindowController implements Initializable {
                     fileSize);
         }
         cbxAudio.getSelectionModel().selectFirst();
+    }
+
+    /**
+     * Vlastni ListView model. Pouzity u fronty.
+     */
+    private void vlastniListViewModel() {
+        lvFronta.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(VideoKeStazeni item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getVideoName().equals("")) {
+                    setText(null);
+                } else {
+                    setText(item.getVideoName() + " " +
+                            item.getResolution() + " " +
+                            item.getVideoCode() + " " +
+                            item.getAudioCode());
+                }
+            }
+        });
     }
 }

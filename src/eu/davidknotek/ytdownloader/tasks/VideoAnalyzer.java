@@ -42,10 +42,6 @@ public class VideoAnalyzer extends Task<List<FormatVidea>> {
         return allFormatList;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public List<String> getErrors() {
         return errors;
     }
