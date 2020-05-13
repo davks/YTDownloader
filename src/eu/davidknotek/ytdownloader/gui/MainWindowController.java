@@ -1,8 +1,8 @@
 package eu.davidknotek.ytdownloader.gui;
 
-import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.enums.TypVidea;
 import eu.davidknotek.ytdownloader.services.ServiceAnalyzer;
+import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.typy.Fronta;
 import eu.davidknotek.ytdownloader.typy.VideoKeStazeni;
 import javafx.collections.FXCollections;
@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -126,17 +124,25 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void onOdstranitZFronty(ActionEvent event) {
-
+        if (lvFronta.getSelectionModel().getSelectedItem() != null) {
+            fronta.odstranitZFronty(lvFronta.getSelectionModel().getSelectedItem());
+        }
     }
 
     @FXML
     void onPresunoutDolu(ActionEvent event) {
-
+        if (lvFronta.getSelectionModel().getSelectedItem() != null) {
+            int index = fronta.presunoutDolu(lvFronta.getSelectionModel().getSelectedItem());
+            lvFronta.getSelectionModel().select(index);
+        }
     }
 
     @FXML
     void onPresunoutNahoru(ActionEvent event) {
-
+        if (lvFronta.getSelectionModel().getSelectedItem() != null) {
+            int index = fronta.presunoutNahoru(lvFronta.getSelectionModel().getSelectedItem());
+            lvFronta.getSelectionModel().select(index);
+        }
     }
 
     /**
