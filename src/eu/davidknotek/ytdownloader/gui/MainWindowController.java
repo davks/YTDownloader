@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,11 +21,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
-    private final List<FormatVidea> seznamVideoFormatu = new ArrayList<>();
-    private final List<FormatVidea> seznamAudioFormatu = new ArrayList<>();
-
-    private final ObservableList<String> onlyVideoList = FXCollections.observableArrayList();
-    private final ObservableList<String> onlyAudioList = FXCollections.observableArrayList();
+    private final ObservableList<FormatVidea> onlyVideoList = FXCollections.observableArrayList();
+    private final ObservableList<FormatVidea> onlyAudioList = FXCollections.observableArrayList();
 
     private final ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
     private final Fronta fronta = new Fronta(seznamVideiKeStazeni);
@@ -35,6 +33,7 @@ public class MainWindowController implements Initializable {
     private FormatVidea vybranyAudioFormat;
 
     private boolean povolitVkladaniDoFronty = false;
+    private boolean stahovatAudioSoubor = false;
 
     @FXML
     private TextField edtUrl;
@@ -43,10 +42,10 @@ public class MainWindowController implements Initializable {
     private Label lblNazevVidea;
 
     @FXML
-    private ComboBox<String> cbxVideo;
+    private ComboBox<FormatVidea> cbxVideo;
 
     @FXML
-    private ComboBox<String> cbxAudio;
+    private ComboBox<FormatVidea> cbxAudio;
 
     @FXML
     private ListView<VideoKeStazeni> lvFronta;
@@ -67,7 +66,9 @@ public class MainWindowController implements Initializable {
         lvFronta.setItems(seznamVideiKeStazeni);
 
         unbind();
-        vlastniListViewModel();
+        videoFormatyCbxModel();
+        audioFormatyCbxModel();
+        frontaListViewModel();
     }
 
     /**
@@ -99,10 +100,11 @@ public class MainWindowController implements Initializable {
             VideoKeStazeni videoKeStazeni = new VideoKeStazeni();
             videoKeStazeni.setVideoName(lblNazevVidea.getText());
             videoKeStazeni.setVideoCode(vybranyVideoFormat.getFormatCode());
-            videoKeStazeni.setAudioCode(vybranyAudioFormat.getFormatCode());
             videoKeStazeni.setResolution(vybranyVideoFormat.getResolution());
             String typ = vybranyAudioFormat.getExtension().equals("m4a") ? typ = "mp4" : vybranyAudioFormat.getExtension();
             videoKeStazeni.setExtension(typ);
+            String audioSoubor = stahovatAudioSoubor ? vybranyAudioFormat.getFormatCode() : null;
+            videoKeStazeni.setAudioCode(audioSoubor);
             fronta.vlozitDoFronty(videoKeStazeni);
         }
     }
@@ -139,19 +141,20 @@ public class MainWindowController implements Initializable {
 
     /**
      * Reakce na výběr formátu z comboboxu. Vybírá se video.
+     * Nektera videa jsou jen video only a pak je potreba stahnout i audio soubor.
      * @param event událost
      */
     @FXML
     void onVybratVideoFormat(ActionEvent event) {
-        onlyAudioList.clear();
         int index = cbxVideo.getSelectionModel().getSelectedIndex();
         if (index > -1) {
-            vybranyVideoFormat = seznamVideoFormatu.get(index);
+            vybranyVideoFormat = onlyVideoList.get(index);
             if (vybranyVideoFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
                 cbxAudio.setDisable(false);
-                zobrazitSeznamAudia();
+                stahovatAudioSoubor = true;
             } else {
                 cbxAudio.setDisable(true);
+                stahovatAudioSoubor = false;
             }
         }
     }
@@ -164,7 +167,7 @@ public class MainWindowController implements Initializable {
     void onVybratAudioFormat(ActionEvent event) {
         int index = cbxAudio.getSelectionModel().getSelectedIndex();
         if (index > - 1) {
-            vybranyAudioFormat = seznamAudioFormatu.get(index);
+            vybranyAudioFormat = onlyAudioList.get(index);
         }
     }
 
@@ -177,9 +180,12 @@ public class MainWindowController implements Initializable {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
-    ///////////////////////////////////////////////////////
-    // Soukromé metody
-    ///////////////////////////////////////////////////////
+
+    /* ****************************************************
+     *
+     * Soukromé metody
+     *
+     ******************************************************/
 
     /**
      * Zrušení provázanosti s druhým vláknem, který analyzuje URL.
@@ -192,7 +198,6 @@ public class MainWindowController implements Initializable {
             pbUkazatel.progressProperty().unbind();
             pbUkazatel.setProgress(0.0);
             rozstriditSeznamFormatu(serviceAnalyzer.getValue());
-            zobrazitSeznamVidea();
             povolitVkladaniDoFronty = true;
         });
 
@@ -220,54 +225,24 @@ public class MainWindowController implements Initializable {
      * na video a audio formáty.
      * @param allFormatList kompletní seznam formátů
      */
-    private void rozstriditSeznamFormatu(List<FormatVidea> allFormatList) {
-        seznamAudioFormatu.clear();
-        seznamVideoFormatu.clear();
+    private void rozstriditSeznamFormatu(ObservableList<FormatVidea> allFormatList) {
+        onlyAudioList.clear();
+        onlyVideoList.clear();
         for (FormatVidea format : allFormatList) {
             if (format.getTypVidea() == TypVidea.AUDIO_ONLY) {
-                seznamAudioFormatu.add(format);
+                onlyAudioList.add(format);
             } else {
-                seznamVideoFormatu.add(format);
-            }
-        }
-    }
-
-    /**
-     * V comboboxu zobrazíme seznam video formátů.
-     */
-    private void zobrazitSeznamVidea() {
-        // TODO predelat s vlastnim modelem
-        for (FormatVidea format : seznamVideoFormatu) {
-            if (!format.getResolution().equals("")) {
-                String fps = format.getFps().equals("") ? "*" : format.getFps();
-                String fileSize = format.getFileSize().equals("") ? "*" : format.getFileSize();
-                onlyVideoList.add(format.getResolution() + " / " +
-                        fps + " / " +
-                        format.getExtension() + " / " +
-                        fileSize);
+                onlyVideoList.add(format);
             }
         }
         cbxVideo.getSelectionModel().selectFirst();
-    }
-
-    /**
-     * V comboboxu zobrazíme seznam audio formátů.
-     */
-    private void zobrazitSeznamAudia() {
-        // TODO predelat s vlastnim modelem
-        for (FormatVidea format : seznamAudioFormatu) {
-            String fileSize = format.getFileSize().equals("") ? "*" : format.getFileSize();
-            onlyAudioList.add(format.getAudioQuality() + " / " +
-                    format.getExtension() + " / " +
-                    fileSize);
-        }
         cbxAudio.getSelectionModel().selectFirst();
     }
 
     /**
      * Vlastni ListView model. Pouzity u fronty.
      */
-    private void vlastniListViewModel() {
+    private void frontaListViewModel() {
         lvFronta.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(VideoKeStazeni item, boolean empty) {
@@ -275,12 +250,84 @@ public class MainWindowController implements Initializable {
                 if (empty || item == null || item.getVideoName().equals("")) {
                     setText(null);
                 } else {
+                    String audioCode = item.getAudioCode() == null ? "" : item.getAudioCode();
                     setText(item.getVideoName() + " " +
                             item.getResolution() + " " +
                             item.getVideoCode() + " " +
-                            item.getAudioCode());
+                            audioCode);
                 }
             }
         });
     }
+
+    /**
+     * Vlastní ComboBox model. Pouzit u seznamu videi.
+     * Callback je interfejs a prvni typovy parametr je navratovym typem metody call.
+     * Druhy typovy parametr je parametrem metody call.
+     * Je vytvoren objekt ListCell, který zobrazi polozky v comboboxu, reaguje na vybrani...
+     * Ta ma pretizenou metodu updateItem, ktera naplni combobox
+     */
+    private void videoFormatyCbxModel() {
+        Callback<ListView<FormatVidea>, ListCell<FormatVidea>> cellFactory = param -> new ListCell<>() {
+            @Override
+            protected void updateItem(FormatVidea item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getFormatCode().equals("")) {
+                    setText(null);
+                } else {
+                    String fps = item.getFps().equals("") ? "*" : item.getFps();
+                    String fileSize = item.getFileSize().equals("") ? "*" : item.getFileSize();
+                    setText(item.getResolution() + " / " +
+                            fps + " / " +
+                            item.getExtension() + " / " +
+                            fileSize);
+                }
+            }
+        };
+        cbxVideo.setButtonCell(cellFactory.call(null));
+        cbxVideo.setCellFactory(cellFactory);
+    }
+
+    /**
+     * Vlastní combobox model. Pouzit v seznamu audii.
+     */
+    private void audioFormatyCbxModel() {
+        Callback<ListView<FormatVidea>, ListCell<FormatVidea>> cellFactory = param -> new ListCell<>() {
+            @Override
+            protected void updateItem(FormatVidea item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getFormatCode().equals("")) {
+                    setText(null);
+                } else {
+                    String fileSize = item.getFileSize().equals("") ? "*" : item.getFileSize();
+                    setText(item.getAudioQuality() + " / " +
+                            item.getExtension() + " / " +
+                            fileSize);
+                }
+            }
+        };
+        cbxAudio.setButtonCell(cellFactory.call(null));
+        cbxAudio.setCellFactory(cellFactory);
+    }
+
+//    private void videoFormatyCbxModel2() {
+//        Callback<ListView<FormatVidea>, ListCell<FormatVidea>> cellFactory = new Callback<>() {
+//            @Override
+//            public ListCell<FormatVidea> call(ListView<FormatVidea> param) {
+//                return new ListCell<>() {
+//                    @Override
+//                    protected void updateItem(FormatVidea item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (item == null | empty) {
+//                            setGraphic(null);
+//                        } else {
+//                            setText(item.getResolution());
+//                        }
+//                    }
+//                };
+//            }
+//        };
+//        cbxVideo.setButtonCell(cellFactory.call(null));
+//        cbxVideo.setCellFactory(cellFactory);
+//    }
 }

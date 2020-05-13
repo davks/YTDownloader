@@ -2,12 +2,13 @@ package eu.davidknotek.ytdownloader.services;
 
 import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.tasks.VideoAnalyzer;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
 import java.util.List;
 
-public class ServiceAnalyzer extends Service<List<FormatVidea>> {
+public class ServiceAnalyzer extends Service<ObservableList<FormatVidea>> {
 
     private String url;
 
@@ -19,7 +20,7 @@ public class ServiceAnalyzer extends Service<List<FormatVidea>> {
     }
 
     @Override
-    protected Task<List<FormatVidea>> createTask() {
+    protected Task<ObservableList<FormatVidea>> createTask() {
         VideoAnalyzer videoAnalyzer = new VideoAnalyzer(url);
         return videoAnalyzer;
     }

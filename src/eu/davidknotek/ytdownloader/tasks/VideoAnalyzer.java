@@ -3,6 +3,7 @@ package eu.davidknotek.ytdownloader.tasks;
 import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.enums.TypVidea;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
 import java.io.BufferedReader;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VideoAnalyzer extends Task<List<FormatVidea>> {
+public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
     private String url;
     private final List<String> errors;
-    private final List<FormatVidea> allFormatList; //seznam formatu jednoho videa
+    private final ObservableList<FormatVidea> allFormatList; //seznam formatu jednoho videa
 
     /**
      * Konstruktor. Přivede url.
@@ -29,7 +30,7 @@ public class VideoAnalyzer extends Task<List<FormatVidea>> {
     }
 
     @Override
-    protected List<FormatVidea> call() throws Exception {
+    protected ObservableList<FormatVidea> call() throws Exception {
         updateMessage("Analyzuji URL, čekejte prosím...");
         String nazevVidea = zjistitNazevVidea();
         if (nazevVidea != null) {
