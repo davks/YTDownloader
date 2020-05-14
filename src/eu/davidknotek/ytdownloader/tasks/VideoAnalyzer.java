@@ -110,13 +110,6 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
             allFormatList.add(formatVidea);
         }
-
-//        for (FormatVidea format : seznamFormatu) {
-//            System.out.println(format.getFormatCode() + " / " +
-//                    format.getExtension() + " / " +
-//                    format.getFileSize() + " / " +
-//                    format.getTyp());
-//        }
     }
 
     /**

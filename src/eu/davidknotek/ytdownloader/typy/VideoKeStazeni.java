@@ -5,10 +5,28 @@ public class VideoKeStazeni {
     private String videoName;
     private String videoCode;
     private String audioCode;
-    private String extension;
+    private String extensionVideo;
+    private String extensionAudio;
     private String resolution;
+    private String url;
 
     public VideoKeStazeni() {
+    }
+
+    public String getExtensionAudio() {
+        return extensionAudio;
+    }
+
+    public void setExtensionAudio(String extensionAudio) {
+        this.extensionAudio = extensionAudio;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getResolution() {
@@ -43,11 +61,11 @@ public class VideoKeStazeni {
         this.audioCode = audioCode;
     }
 
-    public String getExtension() {
-        return extension;
+    public String getExtensionVideo() {
+        return extensionVideo;
     }
 
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setExtensionVideo(String extensionVideo) {
+        this.extensionVideo = extensionVideo;
     }
 }

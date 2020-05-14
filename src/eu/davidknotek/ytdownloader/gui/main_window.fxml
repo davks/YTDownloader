@@ -86,7 +86,9 @@
             <Separator prefWidth="200.0" />
             <HBox prefHeight="0.0" prefWidth="674.0" spacing="8.0">
                <children>
-                  <ProgressBar fx:id="pbUkazatel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="104.0" progress="0.0" />
+                  <ProgressBar fx:id="pbUkazatelPrubehu" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="104.0" progress="0.0" />
+                  <Label fx:id="lblUkazatelPrubehu" />
+                  <Label fx:id="lblZbyvajiciCas" />
                   <Label fx:id="lblZprava" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" />
                </children>

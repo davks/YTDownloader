@@ -2,6 +2,7 @@ package eu.davidknotek.ytdownloader.gui;
 
 import eu.davidknotek.ytdownloader.enums.TypVidea;
 import eu.davidknotek.ytdownloader.services.ServiceAnalyzer;
+import eu.davidknotek.ytdownloader.services.ServiceStahovani;
 import eu.davidknotek.ytdownloader.typy.FormatVidea;
 import eu.davidknotek.ytdownloader.typy.Fronta;
 import eu.davidknotek.ytdownloader.typy.VideoKeStazeni;
@@ -22,13 +23,15 @@ public class MainWindowController implements Initializable {
     private final ObservableList<FormatVidea> onlyVideoList = FXCollections.observableArrayList();
     private final ObservableList<FormatVidea> onlyAudioList = FXCollections.observableArrayList();
 
-    private final ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
-    private final Fronta fronta = new Fronta(seznamVideiKeStazeni);
+    private Fronta fronta;
 
     private final ServiceAnalyzer serviceAnalyzer = new ServiceAnalyzer();
+    private final ServiceStahovani serviceStahovani = new ServiceStahovani();
 
     private FormatVidea vybranyVideoFormat;
     private FormatVidea vybranyAudioFormat;
+
+    private String urlVidea;
 
     private boolean povolitVkladaniDoFronty = false;
     private boolean stahovatAudioSoubor = false;
@@ -55,15 +58,25 @@ public class MainWindowController implements Initializable {
     private Label lblZprava;
 
     @FXML
-    private ProgressBar pbUkazatel;
+    private Label lblUkazatelPrubehu;
+
+    @FXML
+    private Label lblZbyvajiciCas;
+
+    @FXML
+    private ProgressBar pbUkazatelPrubehu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
+        fronta = new Fronta(seznamVideiKeStazeni);
+
         cbxVideo.setItems(onlyVideoList);
         cbxAudio.setItems(onlyAudioList);
         lvFronta.setItems(seznamVideiKeStazeni);
 
-        unbind();
+        unbindAnalyzer();
+        unbindStahovani();
         videoFormatyCbxModel();
         audioFormatyCbxModel();
         frontaListViewModel();
@@ -75,21 +88,47 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     void onAnalyzovat(ActionEvent event) {
-        String url = edtUrl.getText();
-        if (!url.trim().equals("")) {
-            serviceAnalyzer.setUrl(url);
+        urlVidea = edtUrl.getText();
+        if (!urlVidea.trim().equals("")) {
+            serviceAnalyzer.setUrl(urlVidea);
             serviceAnalyzer.restart();
             onlyVideoList.clear();
             onlyAudioList.clear();
 
             lblNazevVidea.textProperty().bind(serviceAnalyzer.titleProperty());
             lblZprava.textProperty().bind(serviceAnalyzer.messageProperty());
-            pbUkazatel.progressProperty().bind(serviceAnalyzer.progressProperty());
+            pbUkazatelPrubehu.progressProperty().bind(serviceAnalyzer.progressProperty());
         }
     }
 
     /**
-     * Vložíme vybrané video a vybrané audio do fronty.
+     * Stahneme YT video.
+     * @param event udalost
+     */
+    @FXML
+    void onStahnout(ActionEvent event) {
+        if (fronta.getSeznamVideiKeStazeni().size() > 0) {
+            serviceStahovani.setFronta(fronta);
+            serviceStahovani.restart();
+
+            pbUkazatelPrubehu.progressProperty().bind(serviceStahovani.progressProperty());
+            lblZprava.textProperty().bind(serviceStahovani.messageProperty());
+        }
+    }
+
+    /**
+     * Prerusime stahovani YT videa.
+     * @param event udalost
+     */
+    @FXML
+    void onPrerusitStahovani(ActionEvent event) {
+        if (serviceStahovani.isRunning()) {
+            serviceStahovani.cancel();
+        }
+    }
+
+    /**
+     * Vložíme vybrané video a vybrané audio do fronty ke stazeni.
      * @param event událost
      */
     @FXML
@@ -99,8 +138,9 @@ public class MainWindowController implements Initializable {
             videoKeStazeni.setVideoName(lblNazevVidea.getText());
             videoKeStazeni.setVideoCode(vybranyVideoFormat.getFormatCode());
             videoKeStazeni.setResolution(vybranyVideoFormat.getResolution());
-            String typ = vybranyAudioFormat.getExtension().equals("m4a") ? typ = "mp4" : vybranyAudioFormat.getExtension();
-            videoKeStazeni.setExtension(typ);
+            videoKeStazeni.setUrl(urlVidea);
+            videoKeStazeni.setExtensionVideo(vybranyVideoFormat.getExtension());
+            videoKeStazeni.setExtensionAudio(vybranyAudioFormat.getExtension());
             String audioSoubor = stahovatAudioSoubor ? vybranyAudioFormat.getFormatCode() : null;
             videoKeStazeni.setAudioCode(audioSoubor);
             fronta.vlozitDoFronty(videoKeStazeni);
@@ -108,20 +148,14 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void onPrerusitStahovani(ActionEvent event) {
-        //TODO prerusit stahovani
-    }
-
-    @FXML
-    void onStahnout(ActionEvent event) {
-        //TODO zacit stahovat z fronty
-    }
-
-    @FXML
     void onVybratAdresar(ActionEvent event) {
         // TODO vybrat adresar
     }
 
+    /**
+     * Odstraní vybranou polozku z fronty ke stahnuti
+     * @param event udalost
+     */
     @FXML
     void onOdstranitZFronty(ActionEvent event) {
         if (lvFronta.getSelectionModel().getSelectedItem() != null) {
@@ -129,6 +163,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Presune polozku fronty o jednu dolu.
+     * @param event udalost
+     */
     @FXML
     void onPresunoutDolu(ActionEvent event) {
         if (lvFronta.getSelectionModel().getSelectedItem() != null) {
@@ -137,6 +175,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Presune polozku fronty o jednu nahoru
+     * @param event udalost
+     */
     @FXML
     void onPresunoutNahoru(ActionEvent event) {
         if (lvFronta.getSelectionModel().getSelectedItem() != null) {
@@ -197,12 +239,12 @@ public class MainWindowController implements Initializable {
      * Zrušení provázanosti s druhým vláknem, který analyzuje URL.
      * Reakce na skončení vlákna. Buď se to podařilo, přerušili jsme to, či nikoliv.
      */
-    private void unbind() {
+    private void unbindAnalyzer() {
         serviceAnalyzer.setOnSucceeded(workerStateEvent -> {
             lblNazevVidea.textProperty().unbind();
             lblZprava.textProperty().unbind();
-            pbUkazatel.progressProperty().unbind();
-            pbUkazatel.setProgress(0.0);
+            pbUkazatelPrubehu.progressProperty().unbind();
+            pbUkazatelPrubehu.setProgress(0.0);
             rozstriditSeznamFormatu(serviceAnalyzer.getValue());
             povolitVkladaniDoFronty = true;
         });
@@ -210,19 +252,46 @@ public class MainWindowController implements Initializable {
         serviceAnalyzer.setOnCancelled(workerStateEvent -> {
             lblNazevVidea.textProperty().unbind();
             lblZprava.textProperty().unbind();
-            pbUkazatel.progressProperty().unbind();
+            pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.setText("Analýza byla přerušena.");
-            pbUkazatel.setProgress(0.0);
+            pbUkazatelPrubehu.setProgress(0.0);
             povolitVkladaniDoFronty = false;
         });
 
         serviceAnalyzer.setOnFailed(workerStateEvent -> {
             lblNazevVidea.textProperty().unbind();
             lblZprava.textProperty().unbind();
-            pbUkazatel.progressProperty().unbind();
+            pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.setText("Vyskytl se problém při analýze URL.");
-            pbUkazatel.setProgress(0.0);
+            pbUkazatelPrubehu.setProgress(0.0);
             povolitVkladaniDoFronty = false;
+        });
+    }
+
+    /**
+     * Zrušení provázanosti s druhým vláknem, který stahuje URL.
+     * Reakce na skončení vlákna. Buď se to podařilo, přerušili jsme to, či nikoliv.
+     */
+    private void unbindStahovani() {
+        serviceStahovani.setOnSucceeded(workerStateEvent -> {
+            pbUkazatelPrubehu.progressProperty().unbind();
+            lblZprava.textProperty().unbind();
+            pbUkazatelPrubehu.setProgress(0.0);
+            lblZprava.setText("Stahování proběhlo v pořádku.");
+        });
+
+        serviceStahovani.setOnCancelled(workerStateEvent -> {
+            pbUkazatelPrubehu.progressProperty().unbind();
+            lblZprava.textProperty().unbind();
+            pbUkazatelPrubehu.setProgress(0.0);
+            lblZprava.setText("Stahování bylo přerušeno.");
+        });
+
+        serviceStahovani.setOnFailed(workStateEvent -> {
+            pbUkazatelPrubehu.progressProperty().unbind();
+            lblZprava.textProperty().unbind();
+            pbUkazatelPrubehu.setProgress(0.0);
+            lblZprava.setText("Vyskytl se problém při stahování.");
         });
     }
 
@@ -315,25 +384,4 @@ public class MainWindowController implements Initializable {
         cbxAudio.setButtonCell(cellFactory.call(null));
         cbxAudio.setCellFactory(cellFactory);
     }
-
-//    private void videoFormatyCbxModel2() {
-//        Callback<ListView<FormatVidea>, ListCell<FormatVidea>> cellFactory = new Callback<>() {
-//            @Override
-//            public ListCell<FormatVidea> call(ListView<FormatVidea> param) {
-//                return new ListCell<>() {
-//                    @Override
-//                    protected void updateItem(FormatVidea item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (item == null | empty) {
-//                            setGraphic(null);
-//                        } else {
-//                            setText(item.getResolution());
-//                        }
-//                    }
-//                };
-//            }
-//        };
-//        cbxVideo.setButtonCell(cellFactory.call(null));
-//        cbxVideo.setCellFactory(cellFactory);
-//    }
 }
