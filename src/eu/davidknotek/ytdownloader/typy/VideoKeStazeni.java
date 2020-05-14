@@ -9,8 +9,26 @@ public class VideoKeStazeni {
     private String extensionAudio;
     private String resolution;
     private String url;
+    private String fps;
+    private String done;
 
     public VideoKeStazeni() {
+    }
+
+    public String getDone() {
+        return done;
+    }
+
+    public void setDone(String done) {
+        this.done = done;
+    }
+
+    public String getFps() {
+        return fps;
+    }
+
+    public void setFps(String fps) {
+        this.fps = fps;
     }
 
     public String getExtensionAudio() {

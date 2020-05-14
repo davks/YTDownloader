@@ -141,6 +141,8 @@ public class MainWindowController implements Initializable {
             videoKeStazeni.setUrl(urlVidea);
             videoKeStazeni.setExtensionVideo(vybranyVideoFormat.getExtension());
             videoKeStazeni.setExtensionAudio(vybranyAudioFormat.getExtension());
+            videoKeStazeni.setFps(vybranyVideoFormat.getFps());
+            videoKeStazeni.setDone("");
             String audioSoubor = stahovatAudioSoubor ? vybranyAudioFormat.getFormatCode() : null;
             videoKeStazeni.setAudioCode(audioSoubor);
             fronta.vlozitDoFronty(videoKeStazeni);
@@ -276,22 +278,22 @@ public class MainWindowController implements Initializable {
         serviceStahovani.setOnSucceeded(workerStateEvent -> {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
+            lblZprava.setText(serviceStahovani.getValue());
             pbUkazatelPrubehu.setProgress(0.0);
-            lblZprava.setText("Stahování proběhlo v pořádku.");
         });
 
         serviceStahovani.setOnCancelled(workerStateEvent -> {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
             pbUkazatelPrubehu.setProgress(0.0);
-            lblZprava.setText("Stahování bylo přerušeno.");
+            lblZprava.setText("Úloha byla přerušeno.");
         });
 
         serviceStahovani.setOnFailed(workStateEvent -> {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
             pbUkazatelPrubehu.setProgress(0.0);
-            lblZprava.setText("Vyskytl se problém při stahování.");
+            lblZprava.setText("Vyskytl se nějaký problém, úloha byla přerušena.");
         });
     }
 
@@ -326,10 +328,10 @@ public class MainWindowController implements Initializable {
                     setText(null);
                 } else {
                     String audioCode = item.getAudioCode() == null ? "" : item.getAudioCode();
-                    setText(item.getVideoName() + " " +
+                    setText(item.getDone() + " " +
+                            item.getVideoName() + " " +
                             item.getResolution() + " " +
-                            item.getVideoCode() + " " +
-                            audioCode);
+                            item.getFps());
                 }
             }
         });

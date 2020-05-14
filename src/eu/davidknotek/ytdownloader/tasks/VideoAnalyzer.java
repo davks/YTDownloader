@@ -55,6 +55,12 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
      * Private methods
      =====================================*/
 
+    /**
+     * Zjistime nazev videa z URL odkakzu.
+     * @return nazev videa
+     * @throws IOException vyjimka
+     * @throws InterruptedException vyjimka
+     */
     private String zjistitNazevVidea() throws IOException, InterruptedException {
         List<String> lines = provedPrikaz("youtube-dl", "-e", url);
         if (lines.size() > 0) {
@@ -77,6 +83,7 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
         Pattern pFileSize = Pattern.compile(" ([0-9]{1,3}\\.[0-9]{1,2}(MiB|GiB))");
         Pattern pAudioQuality = Pattern.compile(" (\\([0-9]{5}Hz\\))");
 
+
         for (String line : lines) {
             if (isCancelled()) {
                 break;
@@ -88,9 +95,13 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
                 formatVidea.setFormatCode(matcher.group(1));
             else
                 continue;
-            // Extension
+            // Extension - only webm, mp4, m4a
             matcher = pExtension.matcher(line);
-            formatVidea.setExtension(matcher.find() ? matcher.group(1) : "");
+            if (matcher.find()) {
+                formatVidea.setExtension(matcher.group(1));
+            } else {
+                continue;
+            }
             // Resolution
             matcher = pResolution.matcher(line);
             formatVidea.setResolution(matcher.find() ? matcher.group(1) : "");
