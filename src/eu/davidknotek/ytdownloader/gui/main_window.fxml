@@ -22,7 +22,7 @@
             <Label text="Vložte URL YouTube videa:" />
             <HBox prefHeight="11.0" prefWidth="674.0" spacing="8.0">
                <children>
-                  <TextField fx:id="edtUrl" promptText="Zadejte adresu YouTube videa" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="edtUrl" onAction="#onAnalyzovat" promptText="Zadejte adresu YouTube videa" HBox.hgrow="ALWAYS" />
                   <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAnalyzovat" text="Analyzovat">
                      <graphic>
                         <FontIcon />
@@ -39,7 +39,7 @@
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets bottom="8.0" top="5.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="11.0" prefWidth="674.0" spacing="8.0">
@@ -84,13 +84,17 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox prefHeight="0.0" prefWidth="674.0" spacing="8.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                <children>
                   <ProgressBar fx:id="pbUkazatelPrubehu" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="104.0" progress="0.0" />
-                  <Label fx:id="lblUkazatelPrubehu" />
-                  <Label fx:id="lblZbyvajiciCas" />
+                  <Label fx:id="lblUkazatelPrubehu" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblZbyvajiciCas" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="674.0" spacing="8.0">
+               <children>
                   <Label fx:id="lblZprava" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" />
+                  <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>

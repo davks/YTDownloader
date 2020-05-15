@@ -1,5 +1,6 @@
 package eu.davidknotek.ytdownloader.gui;
 
+import eu.davidknotek.ytdownloader.configuration.Konfigurace;
 import eu.davidknotek.ytdownloader.enums.TypVidea;
 import eu.davidknotek.ytdownloader.services.ServiceAnalyzer;
 import eu.davidknotek.ytdownloader.services.ServiceStahovani;
@@ -13,9 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,8 +71,14 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Konfigurace.nacistNastaveni();
+        tfCestaUlozit.setText(Konfigurace.getCesta());
+
         ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
         fronta = new Fronta(seznamVideiKeStazeni);
+
+        serviceStahovani.setLblUkazatelPrubehu(lblUkazatelPrubehu);
+        serviceStahovani.setLblZbyvajiciCas(lblZbyvajiciCas);
 
         cbxVideo.setItems(onlyVideoList);
         cbxAudio.setItems(onlyAudioList);
@@ -109,6 +118,7 @@ public class MainWindowController implements Initializable {
     void onStahnout(ActionEvent event) {
         if (fronta.getSeznamVideiKeStazeni().size() > 0) {
             serviceStahovani.setFronta(fronta);
+            serviceStahovani.setCesta(tfCestaUlozit.getText().trim());
             serviceStahovani.restart();
 
             pbUkazatelPrubehu.progressProperty().bind(serviceStahovani.progressProperty());
@@ -151,7 +161,20 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void onVybratAdresar(ActionEvent event) {
-        // TODO vybrat adresar
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Vyberte adresář");
+
+        File targetFile = new File(tfCestaUlozit.getText());
+        if (targetFile.exists()) {
+            directoryChooser.setInitialDirectory(targetFile);
+        }
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File file = directoryChooser.showDialog(stage);
+
+        if (file != null) {
+            tfCestaUlozit.setText(file.getAbsolutePath());
+        }
     }
 
     /**
@@ -227,7 +250,7 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     void onKonec(ActionEvent event) {
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        konec();
     }
 
 
@@ -248,7 +271,7 @@ public class MainWindowController implements Initializable {
             pbUkazatelPrubehu.progressProperty().unbind();
             pbUkazatelPrubehu.setProgress(0.0);
             rozstriditSeznamFormatu(serviceAnalyzer.getValue());
-            povolitVkladaniDoFronty = true;
+            povolitVkladaniDoFronty = !lblNazevVidea.getText().equals("");
         });
 
         serviceAnalyzer.setOnCancelled(workerStateEvent -> {
@@ -279,6 +302,8 @@ public class MainWindowController implements Initializable {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
             lblZprava.setText(serviceStahovani.getValue());
+            lblUkazatelPrubehu.setText("");
+            lblZbyvajiciCas.setText("");
             pbUkazatelPrubehu.setProgress(0.0);
         });
 
@@ -286,6 +311,8 @@ public class MainWindowController implements Initializable {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
             pbUkazatelPrubehu.setProgress(0.0);
+            lblUkazatelPrubehu.setText("");
+            lblZbyvajiciCas.setText("");
             lblZprava.setText("Úloha byla přerušeno.");
         });
 
@@ -293,6 +320,8 @@ public class MainWindowController implements Initializable {
             pbUkazatelPrubehu.progressProperty().unbind();
             lblZprava.textProperty().unbind();
             pbUkazatelPrubehu.setProgress(0.0);
+            lblUkazatelPrubehu.setText("");
+            lblZbyvajiciCas.setText("");
             lblZprava.setText("Vyskytl se nějaký problém, úloha byla přerušena.");
         });
     }
@@ -385,5 +414,12 @@ public class MainWindowController implements Initializable {
         };
         cbxAudio.setButtonCell(cellFactory.call(null));
         cbxAudio.setCellFactory(cellFactory);
+    }
+
+    public void konec() {
+        Stage stage = (Stage) lblNazevVidea.getScene().getWindow();
+        Konfigurace.setCesta(tfCestaUlozit.getText());
+        Konfigurace.ulozitNastaveni();
+        stage.close();
     }
 }

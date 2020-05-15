@@ -5,8 +5,10 @@ import eu.davidknotek.ytdownloader.typy.VideoKeStazeni;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.scene.control.Label;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -18,11 +20,35 @@ public class Stahovani extends Task<String> {
 
     private static final String YOUTUBEDL = "youtube-dl";
 
+    private Label lblUkazatelPrubehu;
+    private Label lblZbyvajiciCas;
+
+    private String cesta;
     private String outputNazev;
     private final Fronta fronta;
 
     public Stahovani(Fronta fronta) {
         this.fronta = fronta;
+    }
+
+    /**
+     * Uprava cesty kam se bude stahovat video.
+     * @param cesta cesta
+     */
+    public void setCesta(String cesta) {
+        if (!cesta.equals("")) {
+            this.cesta = cesta.endsWith(File.separator) ? cesta : cesta + File.separator;
+        } else {
+            this.cesta = cesta.endsWith(File.separator) ? cesta : "";
+        }
+    }
+
+    public void setLblUkazatelPrubehu(Label lblUkazatelPrubehu) {
+        this.lblUkazatelPrubehu = lblUkazatelPrubehu;
+    }
+
+    public void setLblZbyvajiciCas(Label lblZbyvajiciCas) {
+        this.lblZbyvajiciCas = lblZbyvajiciCas;
     }
 
     /**
@@ -76,8 +102,8 @@ public class Stahovani extends Task<String> {
                     done = "×";
                 }
 
-                int finalI = i;
                 String finalDone = done;
+                int finalI = i;
                 Platform.runLater(() -> {
                     videoKeStazeni.setDone(finalDone);
                     seznamVideiKeStazeni.set(finalI, videoKeStazeni);
@@ -149,19 +175,28 @@ public class Stahovani extends Task<String> {
      * @param line analyzovany radek
      */
     private void analyzujRadek(String line) {
-        Pattern pProcenta = Pattern.compile(" ([0-9]{1,3}\\.[0-9])% ");
-//        Pattern pRychlostStahovani = Pattern.compile("([0-9]{1,4}\\.[0-9]{1,2}(KiB|MiB|GiB)/s)");
-//        Pattern pZbyvajiciCas = Pattern.compile("([0-9]{2}:[0-9]{2})");
+        Pattern pProcenta = Pattern.compile("([0-9]{1,3}\\.[0-9])%");
+        Pattern pZbyvajiciCas = Pattern.compile("([0-9]{2}:[0-9]{2})");
+        Pattern pRychlostStahovani = Pattern.compile("([0-9]{1,4}\\.[0-9]{1,2}(KiB|MiB|GiB)/s)");
 
         Matcher matcher = pProcenta.matcher(line);
         if (matcher.find()) {
             updateProgress(Double.parseDouble(matcher.group(1)), 100);
+            Matcher finalMatcher = matcher;
+            Platform.runLater(() -> lblUkazatelPrubehu.setText(finalMatcher.group(1) + "%"));
         }
 
+        matcher = pZbyvajiciCas.matcher(line);
+        if (matcher.find()) {
+            Matcher finalMatcher = matcher;
+            Platform.runLater(() -> lblZbyvajiciCas.setText(finalMatcher.group(1)));
+        }
 //        matcher = pRychlostStahovani.matcher(line);
 //        if (matcher.find()) {
-//            updateMessage(matcher.group(1));
+//            Matcher finalMatcher = matcher;
+//            Platform.runLater(() -> lblUkazatelPrubehu.setText(finalMatcher.group(1)));
 //        }
+
     }
 
     /**
@@ -175,7 +210,8 @@ public class Stahovani extends Task<String> {
      * @return vrati novy nazev
      */
     private String prejmenovatDocasnySoubor(String predpona, String nazev, String code, String extension) {
-        String upravenyNazev = predpona + "-";
+        String upravenyNazev = cesta;
+        upravenyNazev += predpona + "-";
         upravenyNazev += nazev.trim().toLowerCase()
                 .replace(" ", "")
                 .replace("/", "");
@@ -219,13 +255,15 @@ public class Stahovani extends Task<String> {
      * @return upraveny nazev vystupniho souboru
      */
     private String prejmenovatOutputNazev(VideoKeStazeni videoKeStazeni) {
-        return videoKeStazeni.getVideoName().trim().replace("/", "-") +
+        return cesta +
+                videoKeStazeni.getVideoName().trim().replace("/", "-") +
                 " " + videoKeStazeni.getResolution() +
                 "." + videoKeStazeni.getExtensionAudio().replace("m4a", "mp4");
     }
 
     private String prejmenovatOutputNazev(VideoKeStazeni videoKeStazeni, String extension) {
-        return videoKeStazeni.getVideoName().trim().replace("/", "-") +
+        return cesta +
+                videoKeStazeni.getVideoName().trim().replace("/", "-") +
                 " " + videoKeStazeni.getResolution() +
                 "." + extension;
     }

@@ -1,5 +1,6 @@
 package eu.davidknotek.ytdownloader;
 
+import eu.davidknotek.ytdownloader.configuration.Konfigurace;
 import eu.davidknotek.ytdownloader.gui.MainWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,13 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/main_window.fxml"));
         Parent root = (Parent) loader.load();
         MainWindowController controller = loader.getController();
+
+        // Reakce na stisk křížku a uzavření programu
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+            Konfigurace.ulozitNastaveni();
+            controller.konec();
+        });
 
         primaryStage.setTitle("YTDownloader");
         primaryStage.setScene(new Scene(root));
