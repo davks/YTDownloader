@@ -12,6 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Konfigurace.nacistNastaveni();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/main_window.fxml"));
         Parent root = (Parent) loader.load();
         MainWindowController controller = loader.getController();
@@ -19,12 +21,13 @@ public class Main extends Application {
         // Reakce na stisk křížku a uzavření programu
         primaryStage.setOnCloseRequest(e -> {
             e.consume();
-            Konfigurace.ulozitNastaveni();
             controller.konec();
         });
 
         primaryStage.setTitle("YTDownloader");
-        primaryStage.setScene(new Scene(root));
+        double windowWidth = Konfigurace.getWindowWidth().equals("") ? 800 : Double.parseDouble(Konfigurace.getWindowWidth());
+        double windowHeight = Konfigurace.getWindowHeight().equals("") ? 400 : Double.parseDouble(Konfigurace.getWindowHeight());
+        primaryStage.setScene(new Scene(root, windowWidth, windowHeight));
         primaryStage.show();
     }
 

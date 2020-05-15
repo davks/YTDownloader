@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.davidknotek.ytdownloader.gui.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.davidknotek.ytdownloader.gui.MainWindowController">
    <children>
       <VBox prefHeight="372.0" prefWidth="674.0" spacing="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
          <children>
@@ -84,17 +84,17 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+            <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="200.0" spacing="8.0">
                <children>
-                  <ProgressBar fx:id="pbUkazatelPrubehu" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="104.0" progress="0.0" />
-                  <Label fx:id="lblUkazatelPrubehu" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblZbyvajiciCas" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                  <ProgressBar fx:id="pbUkazatelPrubehu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="104.0" progress="0.0" />
+                  <Label fx:id="lblUkazatelPrubehu" maxHeight="-Infinity" prefHeight="20.0" />
+                  <Label fx:id="lblZbyvajiciCas" maxHeight="-Infinity" prefHeight="20.0" />
                </children>
             </HBox>
-            <HBox prefHeight="0.0" prefWidth="674.0" spacing="8.0">
+            <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="674.0" spacing="8.0">
                <children>
-                  <Label fx:id="lblZprava" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblZprava" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="30.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" />
                </children>
             </HBox>
          </children>

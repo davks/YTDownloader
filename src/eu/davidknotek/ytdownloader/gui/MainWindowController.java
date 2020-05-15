@@ -71,8 +71,7 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Konfigurace.nacistNastaveni();
-        tfCestaUlozit.setText(Konfigurace.getCesta());
+        tfCestaUlozit.setText(Konfigurace.getDirectory());
 
         ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
         fronta = new Fronta(seznamVideiKeStazeni);
@@ -418,7 +417,9 @@ public class MainWindowController implements Initializable {
 
     public void konec() {
         Stage stage = (Stage) lblNazevVidea.getScene().getWindow();
-        Konfigurace.setCesta(tfCestaUlozit.getText());
+        Konfigurace.setDirectory(tfCestaUlozit.getText());
+        Konfigurace.setWindowWidth(String.valueOf(stage.getWidth()));
+        Konfigurace.setWindowHeight(String.valueOf(stage.getHeight()));
         Konfigurace.ulozitNastaveni();
         stage.close();
     }
