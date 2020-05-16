@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private String VERSION = "1.0";
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Konfigurace.nacistNastaveni();
@@ -24,7 +26,7 @@ public class Main extends Application {
             controller.konec();
         });
 
-        primaryStage.setTitle("YTDownloader");
+        primaryStage.setTitle("YTDownloader " + VERSION);
         double windowWidth = Konfigurace.getWindowWidth().equals("") ? 800 : Double.parseDouble(Konfigurace.getWindowWidth());
         double windowHeight = Konfigurace.getWindowHeight().equals("") ? 400 : Double.parseDouble(Konfigurace.getWindowHeight());
         primaryStage.setScene(new Scene(root, windowWidth, windowHeight));

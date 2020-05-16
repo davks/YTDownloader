@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="YTDownloader:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/YTDownloader_jar</output-path>
+    <root id="root">
+      <element id="archive" name="YTDownloader.jar">
+        <element id="module-output" name="YTDownloader" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="application" name="ikonli-11.5.0" />
+        <element id="library" level="application" name="JavaFX13" />
+      </element>
+    </root>
+  </artifact>
+</component>
