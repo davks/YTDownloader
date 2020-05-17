@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -249,6 +250,7 @@ public class Stahovani extends Task<String> {
      * Upravi nazev vystupniho souboru.
      *
      * @param videoKeStazeni video, ktere se bude stahovat
+     * @param docasny pojmenovat finalni soubor docasnou variantou, kde nefiguruje nazev videa
      * @return upraveny nazev vystupniho souboru
      */
     private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, boolean docasny) {
@@ -256,8 +258,7 @@ public class Stahovani extends Task<String> {
         if (docasny) {
             novyNazev += "video-" + videoKeStazeni.getResolution();
         } else {
-            novyNazev += videoKeStazeni.getVideoName().trim().replace("/", "-") +
-                    " " + videoKeStazeni.getResolution();
+            novyNazev += nahraditZnaky(videoKeStazeni.getVideoName().trim()) + " " + videoKeStazeni.getResolution();
         }
 
         novyNazev += "." + videoKeStazeni.getExtensionAudio().replace("m4a", "mp4");
@@ -265,13 +266,20 @@ public class Stahovani extends Task<String> {
         return novyNazev;
     }
 
+    /**
+     * Upravi nazev vystupniho souboru.
+     *
+     * @param videoKeStazeni video, ktere se bude stahovat
+     * @param extension koncovka souboru
+     * @param docasny pojmenovat finalni soubor docasnou variantou, kde nefiguruje nazev videa
+     * @return upraveny nazev vystupniho souboru
+     */
     private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, String extension, boolean docasny) {
         String novyNazev = cesta;
         if (docasny) {
             novyNazev += "video-" + videoKeStazeni.getResolution();
         } else {
-            novyNazev += videoKeStazeni.getVideoName().trim().replace("/", "-") +
-                    " " + videoKeStazeni.getResolution();
+            novyNazev += nahraditZnaky(videoKeStazeni.getVideoName().trim()) + " " + videoKeStazeni.getResolution();
         }
 
         novyNazev += "." + extension;
@@ -290,5 +298,20 @@ public class Stahovani extends Task<String> {
                 seznamVideiKeStazeni.set(finalI, videoKeStazeni);
             });
         }
+    }
+
+    /**
+     * V teextu nahradi znaky obsazene v poli za pomlcku
+     * @param text prohledavany text
+     * @return upraveny text
+     */
+    private String nahraditZnaky(String text) {
+        String[] nahrazovaneZnaky = {"!", "?", "/", "|", "<", ">", "\"", "'", "@", "#", "$", "%", "^", "&", "*", "{", "}", "\\"};
+        for (String znak : nahrazovaneZnaky) {
+            if (text.contains(znak)) {
+                text = text.replace(znak, "-");
+            }
+        }
+        return text;
     }
 }
