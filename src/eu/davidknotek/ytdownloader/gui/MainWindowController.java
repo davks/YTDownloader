@@ -415,6 +415,9 @@ public class MainWindowController implements Initializable {
         cbxAudio.setCellFactory(cellFactory);
     }
 
+    /**
+     * Ukonceni programu a ulozeni nastaveni
+     */
     public void konec() {
         Stage stage = (Stage) lblNazevVidea.getScene().getWindow();
         Konfigurace.setDirectory(tfCestaUlozit.getText());

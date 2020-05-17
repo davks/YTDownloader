@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +25,8 @@ public class Stahovani extends Task<String> {
     private Label lblZbyvajiciCas;
 
     private String cesta;
-    private String outputNazev;
+    private String finalniSoubor;
+    private String docasnySoubor;
     private final Fronta fronta;
 
     public Stahovani(Fronta fronta) {
@@ -33,6 +35,7 @@ public class Stahovani extends Task<String> {
 
     /**
      * Uprava cesty kam se bude stahovat video.
+     *
      * @param cesta cesta
      */
     public void setCesta(String cesta) {
@@ -74,7 +77,7 @@ public class Stahovani extends Task<String> {
             // Stahneme video stopu
             if ((videoKeStazeni.getVideoCode() != null) && (!videoKeStazeni.getVideoCode().equals(""))) {
                 updateMessage("Stahuji video: " + videoKeStazeni.getVideoName());
-                videoStopaNazev = prejmenovatDocasnySoubor("video", videoKeStazeni.getVideoName(), videoKeStazeni.getVideoCode(), videoKeStazeni.getExtensionVideo());
+                videoStopaNazev = pojmenovatDocasnouStopu("video", videoKeStazeni.getVideoCode(), videoKeStazeni.getExtensionVideo());
                 stahnout(YOUTUBEDL, "-f", videoKeStazeni.getVideoCode(), videoKeStazeni.getUrl(), "-o", videoStopaNazev);
                 jeStahnutaVideoStopa = true;
             }
@@ -82,7 +85,7 @@ public class Stahovani extends Task<String> {
             // Stahneme audio stopu pokud existuje
             if ((videoKeStazeni.getAudioCode() != null) && (!videoKeStazeni.getAudioCode().equals(""))) {
                 updateMessage("Stahuji audio: " + videoKeStazeni.getVideoName());
-                audioStopaNazev = prejmenovatDocasnySoubor("audio", videoKeStazeni.getVideoName(), videoKeStazeni.getAudioCode(), videoKeStazeni.getExtensionAudio());
+                audioStopaNazev = pojmenovatDocasnouStopu("audio", videoKeStazeni.getAudioCode(), videoKeStazeni.getExtensionAudio());
                 stahnout(YOUTUBEDL, "-f", videoKeStazeni.getAudioCode(), videoKeStazeni.getUrl(), "-o", audioStopaNazev);
                 jeStahnutaAudioStopa = true;
             }
@@ -92,12 +95,14 @@ public class Stahovani extends Task<String> {
                 if (Files.exists(Path.of(videoStopaNazev)) && Files.exists(Path.of(audioStopaNazev))) {
                     updateMessage("Spojuji video a audio stopu...");
                     spojitStopy(prikazKeSpojeni(videoKeStazeni, videoStopaNazev, audioStopaNazev));
+
+                    Files.move(Path.of(docasnySoubor), Path.of(finalniSoubor), StandardCopyOption.REPLACE_EXISTING);
                     Files.deleteIfExists(Path.of(audioStopaNazev));
                     Files.deleteIfExists(Path.of(videoStopaNazev));
                 }
 
                 String done = "✔";
-                if (!Files.exists(Path.of(outputNazev))) {
+                if (!Files.exists(Path.of(finalniSoubor))) {
                     bylaChyba = true;
                     done = "×";
                 }
@@ -113,9 +118,8 @@ public class Stahovani extends Task<String> {
             // Je stahnuta pouze video stopa - prejmenujeme video
             if (jeStahnutaVideoStopa && !jeStahnutaAudioStopa) {
                 if (Files.exists(Path.of(videoStopaNazev))) {
-                    String novyNazevSouboru = prejmenovatOutputNazev(videoKeStazeni, videoKeStazeni.getExtensionVideo());
-                    Files.deleteIfExists(Path.of(novyNazevSouboru));
-                    Files.move(Path.of(videoStopaNazev), Path.of(novyNazevSouboru));
+                    String novyNazevSouboru = pojmenovatFinalniSoubor(videoKeStazeni, videoKeStazeni.getExtensionVideo(), false);
+                    Files.move(Path.of(videoStopaNazev), Path.of(novyNazevSouboru), StandardCopyOption.REPLACE_EXISTING);
 
                     int finalI = i;
                     Platform.runLater(() -> {
@@ -177,7 +181,7 @@ public class Stahovani extends Task<String> {
     private void analyzujRadek(String line) {
         Pattern pProcenta = Pattern.compile("([0-9]{1,3}\\.[0-9])%");
         Pattern pZbyvajiciCas = Pattern.compile("([0-9]{2}:[0-9]{2})");
-        Pattern pRychlostStahovani = Pattern.compile("([0-9]{1,4}\\.[0-9]{1,2}(KiB|MiB|GiB)/s)");
+//        Pattern pRychlostStahovani = Pattern.compile("([0-9]{1,4}\\.[0-9]{1,2}(KiB|MiB|GiB)/s)");
 
         Matcher matcher = pProcenta.matcher(line);
         if (matcher.find()) {
@@ -204,21 +208,12 @@ public class Stahovani extends Task<String> {
      * Tyhled docasne stazene soubory se potom vymazou. Tato metoda jen upravi nazev takove stopy.
      *
      * @param predpona  text pred nazvem
-     * @param nazev     nazev videa
      * @param code      format code
      * @param extension koncovka souboru
      * @return vrati novy nazev
      */
-    private String prejmenovatDocasnySoubor(String predpona, String nazev, String code, String extension) {
-        String upravenyNazev = cesta;
-        upravenyNazev += predpona + "-";
-        upravenyNazev += nazev.trim().toLowerCase()
-                .replace(" ", "")
-                .replace("/", "");
-        upravenyNazev += "-" + code;
-        upravenyNazev += "." + extension;
-
-        return upravenyNazev;
+    private String pojmenovatDocasnouStopu(String predpona, String code, String extension) {
+        return cesta + predpona + "-" + code + "." + extension;
     }
 
     /**
@@ -237,13 +232,15 @@ public class Stahovani extends Task<String> {
      * @return vygenerovany prikaz ffmpeg
      */
     private String[] prikazKeSpojeni(VideoKeStazeni videoKeStazeni, String videoStopaNazev, String audioStopaNazev) {
-        outputNazev = prejmenovatOutputNazev(videoKeStazeni);
-        String[] prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-c:v", "copy", "-c:a", "copy", outputNazev};
+        finalniSoubor = pojmenovatFinalniSoubor(videoKeStazeni, false);
+        docasnySoubor = pojmenovatFinalniSoubor(videoKeStazeni, true);
+        String[] prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-c:v", "copy", "-c:a", "copy", docasnySoubor};
 
         // Pokud je video.mp4 a audio.webm vytvorime output.mp4
         if (videoKeStazeni.getExtensionVideo().equals("mp4") && videoKeStazeni.getExtensionAudio().equals("webm")) {
-            outputNazev = prejmenovatOutputNazev(videoKeStazeni, "mp4");
-            prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-strict", "-2", "-c:v", "copy", "-c:a", "copy", outputNazev};
+            finalniSoubor = pojmenovatFinalniSoubor(videoKeStazeni, "mp4", false);
+            docasnySoubor = pojmenovatFinalniSoubor(videoKeStazeni, "mp4", true);
+            prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-strict", "-2", "-c:v", "copy", "-c:a", "copy", docasnySoubor};
         }
         return prikaz;
     }
@@ -254,18 +251,31 @@ public class Stahovani extends Task<String> {
      * @param videoKeStazeni video, ktere se bude stahovat
      * @return upraveny nazev vystupniho souboru
      */
-    private String prejmenovatOutputNazev(VideoKeStazeni videoKeStazeni) {
-        return cesta +
-                videoKeStazeni.getVideoName().trim().replace("/", "-") +
-                " " + videoKeStazeni.getResolution() +
-                "." + videoKeStazeni.getExtensionAudio().replace("m4a", "mp4");
+    private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, boolean docasny) {
+        String novyNazev = cesta;
+        if (docasny) {
+            novyNazev += "video-" + videoKeStazeni.getResolution();
+        } else {
+            novyNazev += videoKeStazeni.getVideoName().trim().replace("/", "-") +
+                    " " + videoKeStazeni.getResolution();
+        }
+
+        novyNazev += "." + videoKeStazeni.getExtensionAudio().replace("m4a", "mp4");
+
+        return novyNazev;
     }
 
-    private String prejmenovatOutputNazev(VideoKeStazeni videoKeStazeni, String extension) {
-        return cesta +
-                videoKeStazeni.getVideoName().trim().replace("/", "-") +
-                " " + videoKeStazeni.getResolution() +
-                "." + extension;
+    private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, String extension, boolean docasny) {
+        String novyNazev = cesta;
+        if (docasny) {
+            novyNazev += "video-" + videoKeStazeni.getResolution();
+        } else {
+            novyNazev += videoKeStazeni.getVideoName().trim().replace("/", "-") +
+                    " " + videoKeStazeni.getResolution();
+        }
+
+        novyNazev += "." + extension;
+        return novyNazev;
     }
 
     /**
