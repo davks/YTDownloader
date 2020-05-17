@@ -306,7 +306,7 @@ public class Stahovani extends Task<String> {
      * @return upraveny text
      */
     private String nahraditZnaky(String text) {
-        String[] nahrazovaneZnaky = {"!", "?", "/", "|", "<", ">", "\"", "'", "@", "#", "$", "%", "^", "&", "*", "{", "}", "\\"};
+        String[] nahrazovaneZnaky = {"\\", "/", "*", ":", "\"", "?", "|", "<", ">"};
         for (String znak : nahrazovaneZnaky) {
             if (text.contains(znak)) {
                 text = text.replace(znak, "-");
