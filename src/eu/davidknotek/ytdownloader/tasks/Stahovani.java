@@ -78,16 +78,14 @@ public class Stahovani extends Task<String> {
             if ((videoKeStazeni.getVideoCode() != null) && (!videoKeStazeni.getVideoCode().equals(""))) {
                 updateMessage("Stahuji video: " + videoKeStazeni.getVideoName());
                 videoStopaNazev = pojmenovatDocasnouStopu("video", videoKeStazeni.getVideoCode(), videoKeStazeni.getExtensionVideo());
-                stahnout(YOUTUBEDL, "-f", videoKeStazeni.getVideoCode(), videoKeStazeni.getUrl(), "-o", videoStopaNazev);
-                jeStahnutaVideoStopa = true;
+                jeStahnutaVideoStopa = stahnout(YOUTUBEDL, "-f", videoKeStazeni.getVideoCode(), videoKeStazeni.getUrl(), "-o", videoStopaNazev);
             }
 
             // Stahneme audio stopu pokud existuje
             if ((videoKeStazeni.getAudioCode() != null) && (!videoKeStazeni.getAudioCode().equals(""))) {
                 updateMessage("Stahuji audio: " + videoKeStazeni.getVideoName());
                 audioStopaNazev = pojmenovatDocasnouStopu("audio", videoKeStazeni.getAudioCode(), videoKeStazeni.getExtensionAudio());
-                stahnout(YOUTUBEDL, "-f", videoKeStazeni.getAudioCode(), videoKeStazeni.getUrl(), "-o", audioStopaNazev);
-                jeStahnutaAudioStopa = true;
+                jeStahnutaAudioStopa = stahnout(YOUTUBEDL, "-f", videoKeStazeni.getAudioCode(), videoKeStazeni.getUrl(), "-o", audioStopaNazev);
             }
 
             // Spojime video a audio stopu pokud jsme je stahli
@@ -118,7 +116,7 @@ public class Stahovani extends Task<String> {
             // Je stahnuta pouze video stopa - prejmenujeme video
             if (jeStahnutaVideoStopa && !jeStahnutaAudioStopa) {
                 if (Files.exists(Path.of(videoStopaNazev))) {
-                    String novyNazevSouboru = pojmenovatFinalniSoubor(videoKeStazeni, videoKeStazeni.getExtensionVideo(), false);
+                    String novyNazevSouboru = pojmenovatSoubor(videoKeStazeni, videoKeStazeni.getExtensionVideo(), false);
                     Files.move(Path.of(videoStopaNazev), Path.of(novyNazevSouboru), StandardCopyOption.REPLACE_EXISTING);
 
                     int finalI = i;
@@ -154,7 +152,7 @@ public class Stahovani extends Task<String> {
      * @param prikaz prikaz
      * @throws IOException vyjimka
      */
-    private void stahnout(String... prikaz) throws IOException, InterruptedException {
+    private boolean stahnout(String... prikaz) throws IOException, InterruptedException {
         ProcessBuilder pb = new ProcessBuilder(prikaz);
         Process process = pb.start();
 
@@ -170,6 +168,10 @@ public class Stahovani extends Task<String> {
             updateProgress(0.0, 100.0);
             process.waitFor();
             process.destroy();
+            return true;
+        } catch (IOException e) {
+            System.err.println("Soubor se nepodarilo stahnout...");
+            return false;
         }
     }
 
@@ -232,14 +234,14 @@ public class Stahovani extends Task<String> {
      * @return vygenerovany prikaz ffmpeg
      */
     private String[] prikazKeSpojeni(VideoKeStazeni videoKeStazeni, String videoStopaNazev, String audioStopaNazev) {
-        finalniSoubor = pojmenovatFinalniSoubor(videoKeStazeni, false);
-        docasnySoubor = pojmenovatFinalniSoubor(videoKeStazeni, true);
+        finalniSoubor = pojmenovatSoubor(videoKeStazeni, false);
+        docasnySoubor = pojmenovatSoubor(videoKeStazeni, true);
         String[] prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-c:v", "copy", "-c:a", "copy", docasnySoubor};
 
         // Pokud je video.mp4 a audio.webm vytvorime output.mp4
         if (videoKeStazeni.getExtensionVideo().equals("mp4") && videoKeStazeni.getExtensionAudio().equals("webm")) {
-            finalniSoubor = pojmenovatFinalniSoubor(videoKeStazeni, "mp4", false);
-            docasnySoubor = pojmenovatFinalniSoubor(videoKeStazeni, "mp4", true);
+            finalniSoubor = pojmenovatSoubor(videoKeStazeni, "mp4", false);
+            docasnySoubor = pojmenovatSoubor(videoKeStazeni, "mp4", true);
             prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-strict", "-2", "-c:v", "copy", "-c:a", "copy", docasnySoubor};
         }
         return prikaz;
@@ -252,7 +254,7 @@ public class Stahovani extends Task<String> {
      * @param docasny pojmenovat finalni soubor docasnou variantou, kde nefiguruje nazev videa
      * @return upraveny nazev vystupniho souboru
      */
-    private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, boolean docasny) {
+    private String pojmenovatSoubor(VideoKeStazeni videoKeStazeni, boolean docasny) {
         String novyNazev = cesta;
         if (docasny) {
             novyNazev += "video-" + videoKeStazeni.getResolution();
@@ -273,7 +275,7 @@ public class Stahovani extends Task<String> {
      * @param docasny pojmenovat finalni soubor docasnou variantou, kde nefiguruje nazev videa
      * @return upraveny nazev vystupniho souboru
      */
-    private String pojmenovatFinalniSoubor(VideoKeStazeni videoKeStazeni, String extension, boolean docasny) {
+    private String pojmenovatSoubor(VideoKeStazeni videoKeStazeni, String extension, boolean docasny) {
         String novyNazev = cesta;
         if (docasny) {
             novyNazev += "video-" + videoKeStazeni.getResolution();
@@ -286,7 +288,7 @@ public class Stahovani extends Task<String> {
     }
 
     /**
-     * Pri znovuspusteni se vynuluje u položek v listview done.
+     * Pri znovuspusteni se vynuluje u položek v listview done - fajfku.
      */
     private void vynulovatDone(ObservableList<VideoKeStazeni> seznamVideiKeStazeni) {
         for (int i = 0; i < seznamVideiKeStazeni.size(); i++) {
@@ -300,7 +302,7 @@ public class Stahovani extends Task<String> {
     }
 
     /**
-     * V teextu nahradi znaky obsazene v poli za pomlcku
+     * V textu nahradi znaky obsazene v poli za pomlcku - Windows neumozni mit tyto znaky v nazvu souboru.
      * @param text prohledavany text
      * @return upraveny text
      */

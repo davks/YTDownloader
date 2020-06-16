@@ -62,9 +62,18 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
      * @throws InterruptedException vyjimka
      */
     private String zjistitNazevVidea() throws IOException, InterruptedException {
+        String regex = "[^\\p{L}\\p{N}\\p{P}\\p{Z}]";
+        /*
+        \p{L} – veškerá písmena ze všech jazyků
+        \p{N} – čísla
+        \p{P} – interpunkce
+        \p{Z} – prázdná místa
+        */
         List<String> lines = provedPrikaz("youtube-dl", "-e", url);
         if (lines.size() > 0) {
-            return lines.get(0);
+            String n = (lines.get(0)).replaceAll(regex, "").replaceAll(" {2}", " ");
+            System.out.println(n);
+            return n;
         }
         return null;
     }
