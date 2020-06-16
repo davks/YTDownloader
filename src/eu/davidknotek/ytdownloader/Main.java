@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private final String VERSION = "1.0.5";
+    private final String VERSION = "1.1.0";
 
     @Override
     public void start(Stage primaryStage) throws Exception{

@@ -95,7 +95,13 @@ public class Stahovani extends Task<String> {
                     spojitStopy(prikazKeSpojeni(videoKeStazeni, videoStopaNazev, audioStopaNazev));
 
                     Files.move(Path.of(docasnySoubor), Path.of(finalniSoubor), StandardCopyOption.REPLACE_EXISTING);
-                    Files.deleteIfExists(Path.of(audioStopaNazev));
+                    if (videoKeStazeni.isPreservedAudio()) {
+                        Files.move(Path.of(audioStopaNazev),
+                                Path.of(pojmenovatSoubor(videoKeStazeni, " (" + videoKeStazeni.getAudioCode() + ")", videoKeStazeni.getExtensionAudio())),
+                                StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        Files.deleteIfExists(Path.of(audioStopaNazev));
+                    }
                     Files.deleteIfExists(Path.of(videoStopaNazev));
                 }
 
@@ -285,6 +291,16 @@ public class Stahovani extends Task<String> {
 
         novyNazev += "." + extension;
         return novyNazev;
+    }
+
+    /**
+     * Přejmenuje soubor.
+     *
+     * @param videoKeStazeni video, které se bude stahovat
+     * @return název souboru
+     */
+    private String pojmenovatSoubor(VideoKeStazeni videoKeStazeni, String pripona, String extension) {
+        return cesta + nahraditZnaky(videoKeStazeni.getVideoName().trim()) + pripona + "." + extension;
     }
 
     /**

@@ -69,6 +69,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private ProgressBar pbUkazatelPrubehu;
 
+    @FXML
+    private CheckBox chbxZachovatAudioStopu;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tfCestaUlozit.setText(Konfigurace.getDirectory());
@@ -151,6 +154,7 @@ public class MainWindowController implements Initializable {
             videoKeStazeni.setExtensionVideo(vybranyVideoFormat.getExtension());
             videoKeStazeni.setExtensionAudio(vybranyAudioFormat.getExtension());
             videoKeStazeni.setFps(vybranyVideoFormat.getFps());
+            videoKeStazeni.setPreservedAudio(chbxZachovatAudioStopu.isSelected());
             videoKeStazeni.setDone("");
             String audioSoubor = stahovatAudioSoubor ? vybranyAudioFormat.getFormatCode() : null;
             videoKeStazeni.setAudioCode(audioSoubor);
@@ -224,9 +228,11 @@ public class MainWindowController implements Initializable {
             if (vybranyVideoFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
                 cbxAudio.setDisable(false);
                 stahovatAudioSoubor = true;
+                chbxZachovatAudioStopu.setDisable(false);
             } else {
                 cbxAudio.setDisable(true);
                 stahovatAudioSoubor = false;
+                chbxZachovatAudioStopu.setDisable(true);
             }
         }
     }
@@ -356,10 +362,12 @@ public class MainWindowController implements Initializable {
                     setText(null);
                 } else {
                     String audioCode = item.getAudioCode() == null ? "" : item.getAudioCode();
+                    String preservedAudio = item.isPreservedAudio() ? " (audio zachováno)" : "";
                     setText(item.getDone() + " " +
                             item.getVideoName() + " " +
                             item.getResolution() + " " +
-                            item.getFps());
+                            item.getFps() + " " +
+                            preservedAudio);
                 }
             }
         });

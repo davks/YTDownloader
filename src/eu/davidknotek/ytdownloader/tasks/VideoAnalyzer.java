@@ -72,7 +72,6 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
         List<String> lines = provedPrikaz("youtube-dl", "-e", url);
         if (lines.size() > 0) {
             String n = (lines.get(0)).replaceAll(regex, "").replaceAll(" {2}", " ");
-            System.out.println(n);
             return n;
         }
         return null;
