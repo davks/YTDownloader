@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
-    private String url;
+    private final String url;
     private final List<String> errors;
     private final ObservableList<FormatVidea> allFormatList; //seznam formatu jednoho videa
 
@@ -24,7 +24,12 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
      * Konstruktor. Přivede url.
      */
     public VideoAnalyzer(String url) {
-        this.url = url;
+        if (url.contains("&")) {
+            this.url = url.substring(0, url.indexOf('&'));
+            System.out.println(url.substring(0, url.indexOf('&')));
+        } else {
+            this.url = url;
+        }
         errors = new ArrayList<>();
         allFormatList = FXCollections.observableArrayList();
     }
@@ -57,8 +62,9 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
     /**
      * Zjistime nazev videa z URL odkakzu.
+     *
      * @return nazev videa
-     * @throws IOException vyjimka
+     * @throws IOException          vyjimka
      * @throws InterruptedException vyjimka
      */
     private String zjistitNazevVidea() throws IOException, InterruptedException {
@@ -79,7 +85,8 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
     /**
      * Analyzuje se URL videa. Ziskají se formaty, ktere pujdou stahnout.
-     * @throws IOException vyjimka IOE
+     *
+     * @throws IOException          vyjimka IOE
      * @throws InterruptedException vyjimka IE
      */
     private void analyzovatURL() throws IOException, InterruptedException {
@@ -133,6 +140,7 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
 
     /**
      * Provede se jakýkoliv příkaz
+     *
      * @param prikaz příkaz
      */
     private List<String> provedPrikaz(String... prikaz) throws IOException, InterruptedException {
