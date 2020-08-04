@@ -104,7 +104,7 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     void onAnalyzovat(ActionEvent event) {
-        urlVidea = edtUrl.getText();
+        urlVidea = upravUrl(edtUrl.getText().trim());
         if (!urlVidea.trim().equals("")) {
             serviceAnalyzer.setUrl(urlVidea);
             serviceAnalyzer.restart();
@@ -445,6 +445,14 @@ public class MainWindowController implements Initializable {
         };
         cbxAudio.setButtonCell(cellFactory.call(null));
         cbxAudio.setCellFactory(cellFactory);
+    }
+
+    private String upravUrl(String url) {
+        if (url.contains("&")) {
+            url = url.substring(0, url.indexOf('&'));
+            System.out.println(url);
+        }
+        return url;
     }
 
     /**
