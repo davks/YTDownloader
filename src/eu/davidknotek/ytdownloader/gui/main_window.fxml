@@ -73,6 +73,11 @@
                         <FontIcon iconLiteral="gmi-remove" iconSize="24" />
                      </graphic>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#onOdstranitVseZFronty">
+                     <graphic>
+                        <FontIcon iconLiteral="gmi-clear" iconSize="24" />
+                     </graphic>
+                  </Button>
                   <Pane prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#onPrerusitStahovani">
                      <graphic>
@@ -95,6 +100,7 @@
             <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="674.0" spacing="8.0">
                <children>
                   <Label fx:id="lblZprava" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="30.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#onOProgramu" text="O programu" />
                   <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" />
                </children>
             </HBox>

@@ -25,6 +25,10 @@ public class Fronta {
         seznamVideiKeStazeni.remove(videoKeStazeni);
     }
 
+    public void odstranitVseZFronty() {
+        seznamVideiKeStazeni.clear();
+    }
+
     /**
      * Ve fronte vybrane video presunout o pozici nahoru.
      * @param videoKeStazeni vybrane video k presunuti
