@@ -24,12 +24,14 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
      * Konstruktor. Přivede url.
      */
     public VideoAnalyzer(String url) {
-        if (url.contains("&")) {
+        /*if (url.contains("&")) {
             this.url = url.substring(0, url.indexOf('&'));
             System.out.println(url.substring(0, url.indexOf('&')));
         } else {
             this.url = url;
-        }
+        }*/
+
+        this.url = url;
         errors = new ArrayList<>();
         allFormatList = FXCollections.observableArrayList();
     }
