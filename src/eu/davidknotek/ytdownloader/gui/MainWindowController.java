@@ -30,6 +30,7 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
     private final ObservableList<FormatVidea> onlyVideoList = FXCollections.observableArrayList();
     private final ObservableList<FormatVidea> onlyAudioList = FXCollections.observableArrayList();
+    private final ObservableList<FormatVidea> onlyAudioListByExtends = FXCollections.observableArrayList();
 
     private Fronta fronta;
 
@@ -88,7 +89,7 @@ public class MainWindowController implements Initializable {
         serviceStahovani.setLblZbyvajiciCas(lblZbyvajiciCas);
 
         cbxVideo.setItems(onlyVideoList);
-        cbxAudio.setItems(onlyAudioList);
+        cbxAudio.setItems(onlyAudioListByExtends);
         lvFronta.setItems(seznamVideiKeStazeni);
 
         unbindAnalyzer();
@@ -235,6 +236,7 @@ public class MainWindowController implements Initializable {
         int index = cbxVideo.getSelectionModel().getSelectedIndex();
         if (index > -1) {
             vybranyVideoFormat = onlyVideoList.get(index);
+            naplnitCbxAudio(vybranyVideoFormat.getExtension());
             if (vybranyVideoFormat.getTypVidea() == TypVidea.VIDEO_ONLY) {
                 cbxAudio.setDisable(false);
                 stahovatAudioSoubor = true;
@@ -371,7 +373,7 @@ public class MainWindowController implements Initializable {
             }
         }
         cbxVideo.getSelectionModel().selectFirst();
-        cbxAudio.getSelectionModel().selectFirst();
+        //cbxAudio.getSelectionModel().selectFirst();
     }
 
     /**
@@ -453,6 +455,19 @@ public class MainWindowController implements Initializable {
             System.out.println(url);
         }
         return url;
+    }
+
+    private void naplnitCbxAudio(String vf) {
+        onlyAudioListByExtends.clear();
+        for (FormatVidea format : onlyAudioList) {
+            if (vf.equals("webm") && format.getExtension().equals("webm")) {
+                onlyAudioListByExtends.add(format);
+            }
+            if (vf.equals("mp4") && format.getExtension().equals("m4a")) {
+                onlyAudioListByExtends.add(format);
+            }
+        }
+        cbxAudio.getSelectionModel().selectFirst();
     }
 
     /**
