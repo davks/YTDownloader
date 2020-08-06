@@ -111,6 +111,7 @@ public class MainWindowController implements Initializable {
             serviceAnalyzer.restart();
             onlyVideoList.clear();
             onlyAudioList.clear();
+            onlyAudioListByExtends.clear();
 
             lblNazevVidea.textProperty().bind(serviceAnalyzer.titleProperty());
             lblZprava.textProperty().bind(serviceAnalyzer.messageProperty());
