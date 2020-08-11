@@ -6,11 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private final String VERSION = "1.1.5";
+    private final String VERSION = "1.1.6";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,6 +26,8 @@ public class Main extends Application {
             e.consume();
             controller.konec();
         });
+
+        primaryStage.getIcons().add(new Image(getClass().getResource("icons/YTD-96.png").toString()));
 
         primaryStage.setTitle("YTDownloader " + VERSION);
         double windowWidth = Konfigurace.getWindowWidth().equals("") ? 800 : Double.parseDouble(Konfigurace.getWindowWidth());
