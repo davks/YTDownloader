@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: eu.davidknotek.ytdownloader.App
-Class-Path: lib/javafx-swt.jar lib/javafx.base.jar lib/javafx.controls.j
- ar lib/javafx.fxml.jar lib/javafx.graphics.jar lib/javafx.media.jar lib
- /javafx.swing.jar lib/javafx.web.jar lib/ikonli-core-11.5.0.jar lib/iko
- nli-fontawesome-pack-11.5.0.jar lib/ikonli-fontawesome5-pack-11.5.0.jar
-  lib/ikonli-javafx-11.5.0.jar lib/ikonli-material-pack-11.5.0.jar
-
