@@ -17,6 +17,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -73,6 +75,27 @@ public class MainWindowController implements Initializable {
     private Label lblZbyvajiciCas;
 
     @FXML
+    private Button btnNahoru;
+
+    @FXML
+    private Button btnDolu;
+
+    @FXML
+    private Button btnSmazatJeden;
+
+    @FXML
+    private Button btnSmazatVse;
+
+    @FXML
+    private Button btnZastavit;
+
+    @FXML
+    private Button btnStahnout;
+
+    @FXML
+    private Button btnCesta;
+
+    @FXML
     private ProgressBar pbUkazatelPrubehu;
 
     @FXML
@@ -81,6 +104,15 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tfCestaUlozit.setText(Konfigurace.getDirectory());
+
+        // Obrázky na tlačítka
+        nastavitObrazekTlacitka(btnNahoru, "BtnUp.png");
+        nastavitObrazekTlacitka(btnDolu, "BtnDown.png");
+        nastavitObrazekTlacitka(btnSmazatJeden, "BtnDeleteOne.png");
+        nastavitObrazekTlacitka(btnSmazatVse, "BtnDeleteAll.png");
+        nastavitObrazekTlacitka(btnZastavit, "BtnStop.png");
+        nastavitObrazekTlacitka(btnStahnout, "BtnDownload.png");
+        nastavitObrazekTlacitka(btnCesta, "BtnPath.png");
 
         ObservableList<VideoKeStazeni> seznamVideiKeStazeni = FXCollections.observableArrayList();
         fronta = new Fronta(seznamVideiKeStazeni);
@@ -264,7 +296,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void onOProgramu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("o_programu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/davidknotek/fxml/o_programu.fxml"));
         Parent root = (Parent) loader.load();
         OProgramuController controller = loader.getController();
 
@@ -469,6 +501,13 @@ public class MainWindowController implements Initializable {
             }
         }
         cbxAudio.getSelectionModel().selectFirst();
+    }
+
+    private void nastavitObrazekTlacitka(Button button, String img) {
+        Image image = new Image(getClass().getResource("/eu/davidknotek/btns/" + img).toString());
+        ImageView imageView = new ImageView(image);
+//        btnNahoru.setPrefSize(32, 32);
+        button.setGraphic(imageView);
     }
 
     /**

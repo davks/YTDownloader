@@ -9,15 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.IOException;
+import java.util.Properties;
 
-    private final String VERSION = "1.1.6";
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Konfigurace.nacistNastaveni();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/main_window.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/davidknotek/fxml/main_window.fxml"));
         Parent root = (Parent) loader.load();
         MainWindowController controller = loader.getController();
 
@@ -27,15 +28,31 @@ public class Main extends Application {
             controller.konec();
         });
 
-        primaryStage.getIcons().add(new Image(getClass().getResource("icons/YTD-96.png").toString()));
+        primaryStage.getIcons().add(new Image(getClass().getResource("/eu/davidknotek/icons/YTD-96.png").toString()));
 
-        primaryStage.setTitle("YTDownloader " + VERSION);
+        primaryStage.setTitle("YTDownloader " + getVersion());
         double windowWidth = Konfigurace.getWindowWidth().equals("") ? 800 : Double.parseDouble(Konfigurace.getWindowWidth());
         double windowHeight = Konfigurace.getWindowHeight().equals("") ? 400 : Double.parseDouble(Konfigurace.getWindowHeight());
         primaryStage.setScene(new Scene(root, windowWidth, windowHeight));
         primaryStage.show();
     }
 
+    /**
+     * Získáme verzi programu z pom.xml souboru přes projent.properties
+     *
+     * @return verzi programu
+     */
+    private String getVersion() {
+        try {
+            final Properties properties = new Properties();
+            properties.load(this.getClass().getClassLoader().getResourceAsStream("project.properties"));
+            return properties.getProperty("version");
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            return "";
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

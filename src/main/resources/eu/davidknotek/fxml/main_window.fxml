@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.davidknotek.ytdownloader.gui.MainWindowController">
    <children>
@@ -24,10 +23,7 @@
             <HBox prefHeight="11.0" prefWidth="674.0" spacing="8.0">
                <children>
                   <TextField fx:id="edtUrl" onAction="#onAnalyzovat" promptText="Zadejte adresu YouTube videa" HBox.hgrow="ALWAYS" />
-                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAnalyzovat" text="Analyzovat">
-                     <graphic>
-                        <FontIcon />
-                     </graphic></Button>
+                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAnalyzovat" text="Analyzovat" />
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
@@ -57,36 +53,14 @@
             <HBox prefHeight="0.0" spacing="8.0">
                <children>
                   <TextField fx:id="tfCestaUlozit" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="326.0" />
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVybratAdresar" text="..." />
-                  <Button mnemonicParsing="false" onAction="#onPresunoutNahoru">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-arrow-upward" iconSize="24" />
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onPresunoutDolu">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-arrow-download" iconSize="24" />
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onOdstranitZFronty">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-remove" iconSize="24" />
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onOdstranitVseZFronty">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-clear" iconSize="24" />
-                     </graphic>
-                  </Button>
+                  <Button fx:id="btnCesta" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVybratAdresar" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnNahoru" maxHeight="32.0" maxWidth="32.0" mnemonicParsing="false" onAction="#onPresunoutNahoru" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnDolu" mnemonicParsing="false" onAction="#onPresunoutDolu" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnSmazatJeden" mnemonicParsing="false" onAction="#onOdstranitZFronty" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnSmazatVse" mnemonicParsing="false" onAction="#onOdstranitVseZFronty" prefHeight="32.0" prefWidth="32.0" />
                   <Pane prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#onPrerusitStahovani">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-stop" iconSize="24" />
-                     </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#onStahnout">
-                     <graphic>
-                        <FontIcon iconLiteral="gmi-file-download" iconSize="24" />
-                     </graphic></Button>
+                  <Button fx:id="btnZastavit" mnemonicParsing="false" onAction="#onPrerusitStahovani" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnStahnout" mnemonicParsing="false" onAction="#onStahnout" prefHeight="32.0" prefWidth="32.0" />
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
