@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="YTDownloader:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka.">
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="develop" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="12256703-076a-459c-9863-68e3d2ea213e" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bXM9HGAvQeITAShdcv2g7sbLeg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
+      <recent name="$PROJECT_DIR$/src/eu/davidknotek/ytdownloader/gui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.YTDownloader [javafx:run]">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="eu.davidknotek.ytdownloader.App" />
+      <module name="YTDownloader" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../../../../Java/ext/javafx-sdk-13.0.2/lib/ --add-modules=javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YTDownloader [javafx:run]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="YTDownloader [package]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <created>1359379246138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1359379246138</updated>
+      <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1590677615562" duration="579000" />
+      <workItem from="1590678294836" duration="523000" />
+      <workItem from="1590683964109" duration="67000" />
+      <workItem from="1590694107943" duration="3129000" />
+      <workItem from="1590770315861" duration="1064000" />
+      <workItem from="1591179871819" duration="320000" />
+      <workItem from="1591180202960" duration="520000" />
+      <workItem from="1591691500765" duration="39000" />
+      <workItem from="1592295410292" duration="10914000" />
+      <workItem from="1592308212555" duration="997000" />
+      <workItem from="1592393050703" duration="1471000" />
+      <workItem from="1594050480519" duration="761000" />
+      <workItem from="1594480871071" duration="247000" />
+      <workItem from="1596539388611" duration="3899000" />
+      <workItem from="1596543893321" duration="4949000" />
+      <workItem from="1596558670410" duration="3079000" />
+      <workItem from="1596700437817" duration="312000" />
+      <workItem from="1596700803988" duration="16676000" />
+      <workItem from="1596803627461" duration="1299000" />
+      <workItem from="1596824570558" duration="37000" />
+      <workItem from="1597147487210" duration="1537000" />
+      <workItem from="1597150102083" duration="678000" />
+      <workItem from="1599030882375" duration="124000" />
+      <workItem from="1599031043256" duration="910000" />
+      <workItem from="1601714201751" duration="118000" />
+      <workItem from="1601806353902" duration="92000" />
+      <workItem from="1602562152624" duration="585000" />
+      <workItem from="1602562772168" duration="155000" />
+      <workItem from="1602690281946" duration="18000" />
+      <workItem from="1602776327766" duration="102000" />
+    </task>
+    <task id="LOCAL-00001" summary="Verze 0.0.1">
+      <created>1588794363328</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588794363328</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Uprava zakladni kostry kodu">
+      <created>1588956521647</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588956521647</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Drobná úprava kostry kodu.">
+      <created>1588957974736</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588957974736</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Prvni skutecna verze. Funguje analyza URl. Vypise nazev videa.">
+      <created>1589042377550</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589042377550</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Kompletní analýza a zobrazení dat v rozbalovacím menu (audio i video).">
+      <created>1589104460859</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589104460859</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Rozstrideni projektu do balicku">
+      <created>1589174178701</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589174178701</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Pridana moznost vlozeni videa do fronty">
+      <created>1589306405583</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589306405583</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Vytvoreni Modelu u comboboxu.">
+      <created>1589354778975</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589354778975</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Dokonceni fronty. Je moznost odstranovat z fronty, menit pozici...">
+      <created>1589358785597</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589358785597</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Prvni nástřel stahování souborů.">
+      <created>1589448849243</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1589448849243</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Stahování souborů je kompletní. Spojuje video a audio stopy.">
+      <created>1589473386927</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1589473386927</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Verze 1.0. Funguje stahování, spojování stop, konfigurace se ukládád do souboru.">
+      <created>1589528301401</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589528301401</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Verze 1.1. Přidáno ukládání velikosti okna do konfigurace.">
+      <created>1589547019494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1589547019494</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Přidáno čislo verze">
+      <created>1589634056419</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1589634056419</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Oprava: finalni video se ted prevadi do docasneho souboru. Audio a video stopy se stahuji do souboru s jednoduchym nazvem (zadne mezery a dalsi znaky).">
+      <created>1589705662599</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1589705662599</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Oprava: nahradi vice znaku v nazvu videa za pomlcku.">
+      <created>1589711632010</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1589711632010</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Pokus o opravu. Nefunkční">
+      <created>1589720286050</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1589720286050</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Ve Windows nesmí být v názvech souborů některé znaky. Opraveno a nahrazeno pomlčkou.">
+      <created>1589722805792</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1589722805792</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Přidán MANIFEST.MF">
+      <created>1589723417301</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1589723417301</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Oprava názvu videa v případě že obsahuje nepovolené znaky, emoji... Jsou povolené běžné znaky, interpunkce, mezery.">
+      <created>1592299426733</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1592299426733</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Zachová audia ke stazeni - vsechna">
+      <created>1592302212859</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1592302212859</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Zachová audia ke stazeni - u každého videa zvlášť.">
+      <created>1592306021457</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1592306021457</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Úprava URL adresy. Pokud je v řetězci &amp;, tak se URL přebytečnou část úřízne.">
+      <created>1592393907737</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1592393907737</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Změna verze na 1.1.1">
+      <created>1592394397229</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1592394397229</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Změna verze na 1.1.2. Přidání tlačítka na odstranění všech videí z fronty. Přidání okna O programu.">
+      <created>1596548883410</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1596548883410</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Změna verze na 1.1.3. Oprava URL adresy.">
+      <created>1596560875072</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1596560875072</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Změna verze na 1.1.3. Oprava URL adresy.">
+      <created>1596560915766</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1596560915766</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Změna verze na 1.1.3. Oprava URL adresy.">
+      <created>1596560984079</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1596560984079</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Změna verze na 1.1.3. Oprava URL adresy.">
+      <created>1596561056424</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1596561056424</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Změna výběru audio formátu. Audio formát se vybere automaticky dle video formátu.">
+      <created>1596709154122</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1596709154122</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Změna výběru audio formátu. Audio formát se vybere automaticky dle video formátu. Drobná oprava.">
+      <created>1596709427601</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1596709427601</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Přidání ikony.">
+      <created>1597148920335</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1597148920335</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka.">
+      <created>1605683789340</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1605683789340</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Rozstrideni projektu do balicku" />
+    <MESSAGE value="Pridana moznost vlozeni videa do fronty" />
+    <MESSAGE value="Vytvoreni Modelu u comboboxu." />
+    <MESSAGE value="Dokonceni fronty. Je moznost odstranovat z fronty, menit pozici..." />
+    <MESSAGE value="Prvni nástřel stahování souborů." />
+    <MESSAGE value="Stahování souborů je kompletní. Spojuje video a audio stopy." />
+    <MESSAGE value="Verze 1.0. Funguje stahování, spojování stop, konfigurace se ukládád do souboru." />
+    <MESSAGE value="Verze 1.1. Přidáno ukládání velikosti okna do konfigurace." />
+    <MESSAGE value="Přidáno čislo verze" />
+    <MESSAGE value="Oprava: finalni video se ted prevadi do docasneho souboru. Audio a video stopy se stahuji do souboru s jednoduchym nazvem (zadne mezery a dalsi znaky)." />
+    <MESSAGE value="Oprava: nahradi vice znaku v nazvu videa za pomlcku." />
+    <MESSAGE value="Pokus o opravu. Nefunkční" />
+    <MESSAGE value="Ve Windows nesmí být v názvech souborů některé znaky. Opraveno a nahrazeno pomlčkou." />
+    <MESSAGE value="Přidán MANIFEST.MF" />
+    <MESSAGE value="Oprava názvu videa v případě že obsahuje nepovolené znaky, emoji... Jsou povolené běžné znaky, interpunkce, mezery." />
+    <MESSAGE value="Zachová audia ke stazeni - vsechna" />
+    <MESSAGE value="Zachová audia ke stazeni - u každého videa zvlášť." />
+    <MESSAGE value="Úprava URL adresy. Pokud je v řetězci &amp;, tak se URL přebytečnou část úřízne." />
+    <MESSAGE value="Změna verze na 1.1.1" />
+    <MESSAGE value="Změna verze na 1.1.2. Přidání tlačítka na odstranění všech videí z fronty. Přidání okna O programu." />
+    <MESSAGE value="Změna verze na 1.1.3. Oprava URL adresy." />
+    <MESSAGE value="Změna výběru audio formátu. Audio formát se vybere automaticky dle video formátu." />
+    <MESSAGE value="Změna výběru audio formátu. Audio formát se vybere automaticky dle video formátu. Drobná oprava." />
+    <MESSAGE value="Přidání ikony." />
+    <MESSAGE value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
+    <option name="LAST_COMMIT_MESSAGE" value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="507" y="113" width="576" height="705" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1605676406142">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state x="507" y="113" width="576" height="705" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.32.1600.868@0.32.1600.868" timestamp="1605676406142" />
+    <state x="483" y="185" width="624" height="528" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1599030922976">
+      <screen x="0" y="28" width="1600" height="872" />
+    </state>
+    <state x="483" y="185" width="624" height="528" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.28.1600.872@0.28.1600.872" timestamp="1599030922976" />
+    <state x="559" y="330" width="601" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605676550513">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state x="559" y="330" width="601" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.32.1600.868@0.32.1600.868" timestamp="1605676550513" />
+    <state x="335" y="32" width="948" height="870" key="CommitChangelistDialog2" timestamp="1605684209960">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state x="335" y="30" width="948" height="870" key="CommitChangelistDialog2/0.28.1600.872@0.28.1600.872" timestamp="1597148920217" />
+    <state x="335" y="32" key="CommitChangelistDialog2/0.32.1600.868@0.32.1600.868" timestamp="1605684209960" />
+    <state x="679" y="167" width="733" height="464" key="FileChooserDialogImpl" timestamp="1602690295668">
+      <screen x="0" y="28" width="1600" height="872" />
+    </state>
+    <state x="679" y="167" width="733" height="464" key="FileChooserDialogImpl/0.28.1600.872@0.28.1600.872" timestamp="1602690295668" />
+    <state width="1552" height="212" key="GridCell.Tab.0.bottom" timestamp="1605684164514">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1556" height="225" key="GridCell.Tab.0.bottom/0.28.1600.872@0.28.1600.872" timestamp="1602342685856" />
+    <state width="1552" height="212" key="GridCell.Tab.0.bottom/0.32.1600.868@0.32.1600.868" timestamp="1605684164514" />
+    <state width="1552" height="212" key="GridCell.Tab.0.center" timestamp="1605684164513">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1556" height="225" key="GridCell.Tab.0.center/0.28.1600.872@0.28.1600.872" timestamp="1602342685854" />
+    <state width="1552" height="212" key="GridCell.Tab.0.center/0.32.1600.868@0.32.1600.868" timestamp="1605684164513" />
+    <state width="1552" height="212" key="GridCell.Tab.0.left" timestamp="1605684164513">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1556" height="225" key="GridCell.Tab.0.left/0.28.1600.872@0.28.1600.872" timestamp="1602342685853" />
+    <state width="1552" height="212" key="GridCell.Tab.0.left/0.32.1600.868@0.32.1600.868" timestamp="1605684164513" />
+    <state width="1552" height="212" key="GridCell.Tab.0.right" timestamp="1605684164513">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1556" height="225" key="GridCell.Tab.0.right/0.28.1600.872@0.28.1600.872" timestamp="1602342685855" />
+    <state width="1552" height="212" key="GridCell.Tab.0.right/0.32.1600.868@0.32.1600.868" timestamp="1605684164513" />
+    <state width="1552" height="343" key="GridCell.Tab.1.bottom" timestamp="1605683291289">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1552" height="343" key="GridCell.Tab.1.bottom/0.32.1600.868@0.32.1600.868" timestamp="1605683291289" />
+    <state width="1552" height="343" key="GridCell.Tab.1.center" timestamp="1605683291287">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1552" height="343" key="GridCell.Tab.1.center/0.32.1600.868@0.32.1600.868" timestamp="1605683291287" />
+    <state width="1552" height="343" key="GridCell.Tab.1.left" timestamp="1605683291286">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1552" height="343" key="GridCell.Tab.1.left/0.32.1600.868@0.32.1600.868" timestamp="1605683291286" />
+    <state width="1552" height="343" key="GridCell.Tab.1.right" timestamp="1605683291288">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state width="1552" height="343" key="GridCell.Tab.1.right/0.32.1600.868@0.32.1600.868" timestamp="1605683291288" />
+    <state x="468" y="32" width="1053" height="843" key="SettingsEditor" timestamp="1605677597346">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state x="468" y="28" width="1053" height="843" key="SettingsEditor/0.28.1600.872@0.28.1600.872" timestamp="1602776424037" />
+    <state x="468" y="32" key="SettingsEditor/0.32.1600.868@0.32.1600.868" timestamp="1605677597346" />
+    <state x="395" y="199" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1605683820345">
+      <screen x="0" y="32" width="1600" height="868" />
+    </state>
+    <state x="395" y="196" width="800" height="534" key="Vcs.Push.Dialog.v2/0.28.1600.872@0.28.1600.872" timestamp="1597148887421" />
+    <state x="395" y="199" key="Vcs.Push.Dialog.v2/0.32.1600.868@0.32.1600.868" timestamp="1605683820345" />
+    <state width="501" height="260" key="javadoc.popup.new" timestamp="1597147796289">
+      <screen x="0" y="28" width="1600" height="872" />
+    </state>
+    <state width="501" height="260" key="javadoc.popup.new/0.28.1600.872@0.28.1600.872" timestamp="1597147796289" />
+  </component>
+</project>

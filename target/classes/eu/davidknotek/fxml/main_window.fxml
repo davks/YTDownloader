@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.davidknotek.ytdownloader.gui.MainWindowController">
+   <children>
+      <VBox prefHeight="372.0" prefWidth="674.0" spacing="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+         <children>
+            <Label text="Vložte URL YouTube videa:" />
+            <HBox prefHeight="11.0" prefWidth="674.0" spacing="8.0">
+               <children>
+                  <TextField fx:id="edtUrl" onAction="#onAnalyzovat" promptText="Zadejte adresu YouTube videa" HBox.hgrow="ALWAYS" />
+                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAnalyzovat" text="Analyzovat" />
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox spacing="8.0">
+               <children>
+                  <Label fx:id="lblNazevVidea" maxWidth="1.7976931348623157E308">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="11.0" prefWidth="674.0" spacing="8.0">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" text="Video:" />
+                  <ComboBox fx:id="cbxVideo" minWidth="-Infinity" onAction="#onVybratVideoFormat" prefHeight="26.0" prefWidth="300.0" />
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" text="Audio" />
+                  <ComboBox fx:id="cbxAudio" minWidth="-Infinity" onAction="#onVybratAudioFormat" prefWidth="250.0" />
+                  <CheckBox fx:id="chbxZachovatAudioStopu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="29.0" text="Zachovat audio stopu" HBox.hgrow="ALWAYS" />
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onVlozitDoFronty" prefHeight="26.0" prefWidth="95.0" text="Do fronty" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+            <ListView fx:id="lvFronta" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox prefHeight="0.0" spacing="8.0">
+               <children>
+                  <TextField fx:id="tfCestaUlozit" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="326.0" />
+                  <Button fx:id="btnCesta" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onVybratAdresar" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnNahoru" maxHeight="32.0" maxWidth="32.0" mnemonicParsing="false" onAction="#onPresunoutNahoru" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnDolu" mnemonicParsing="false" onAction="#onPresunoutDolu" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnSmazatJeden" mnemonicParsing="false" onAction="#onOdstranitZFronty" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnSmazatVse" mnemonicParsing="false" onAction="#onOdstranitVseZFronty" prefHeight="32.0" prefWidth="32.0" />
+                  <Pane prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnZastavit" mnemonicParsing="false" onAction="#onPrerusitStahovani" prefHeight="32.0" prefWidth="32.0" />
+                  <Button fx:id="btnStahnout" mnemonicParsing="false" onAction="#onStahnout" prefHeight="32.0" prefWidth="32.0" />
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <ProgressBar fx:id="pbUkazatelPrubehu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="104.0" progress="0.0" />
+                  <Label fx:id="lblUkazatelPrubehu" maxHeight="-Infinity" prefHeight="20.0" />
+                  <Label fx:id="lblZbyvajiciCas" maxHeight="-Infinity" prefHeight="20.0" />
+               </children>
+            </HBox>
+            <HBox maxHeight="-Infinity" prefHeight="0.0" prefWidth="674.0" spacing="8.0">
+               <children>
+                  <Label fx:id="lblZprava" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="30.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#onOProgramu" text="O programu" />
+                  <Button mnemonicParsing="false" onAction="#onKonec" text="Ukončit" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

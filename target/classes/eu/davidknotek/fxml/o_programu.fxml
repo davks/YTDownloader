@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.davidknotek.ytdownloader.gui.OProgramuController">
+   <children>
+      <VBox layoutX="8.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+         <children>
+            <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Aplikace slouží ke stahování videí z YouTube a spojování video a audio stopy. Využívá aplikaci youtube-dl a ffmpeg." wrapText="true" VBox.vgrow="ALWAYS" />
+            <Label text="Youtube-DL">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="8.0" prefWidth="460.0" spacing="6.0">
+               <children>
+                  <Label text="Verze:" />
+                  <Label fx:id="lblVerzeYTDL" text="verze" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#onAktualizaceYTDL" text="Aktualizace youtube-dl" />
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" />
+            <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="437.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="365.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#onKonec" text="OK" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
