@@ -11,17 +11,21 @@ public class VideoKeStazeni {
     private String url;
     private String fps;
     private String done;
-    private boolean preservedAudio;
+    private boolean preservedAudio; //zachovat audio
 
+    public VideoKeStazeni() {
+    }
+
+    /**
+     * Zachovat audio stopu
+     * @return true/false
+     */
     public boolean isPreservedAudio() {
         return preservedAudio;
     }
 
     public void setPreservedAudio(boolean preservedAudio) {
         this.preservedAudio = preservedAudio;
-    }
-
-    public VideoKeStazeni() {
     }
 
     public String getDone() {

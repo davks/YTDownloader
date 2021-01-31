@@ -213,7 +213,7 @@ public class Stahovani extends Task<String> {
 
     /**
      * Stahuji se audio a video stopy, coz jsou jen docasne soubory, ktere se pozdeji spoji ve vysledne video.
-     * Tyhled docasne stazene soubory se potom vymazou. Tato metoda jen upravi nazev takove stopy.
+     * Tyhle docasne stazene soubory se potom vymazou. Tato metoda jen upravi nazev takove stopy.
      *
      * @param predpona  text pred nazvem
      * @param code      format code
@@ -234,6 +234,9 @@ public class Stahovani extends Task<String> {
      * video.mp4 a audio.m4a -> output.mp4
      * video.mp4 a audio.webm -> output.mp4
      *
+     * V poslední verzi toto platí jen částečně. Při výběru webm video souboru je možné vybrat pouze webm audio a
+     * při výběru mp4 videa jen m4a audio soubor.
+     *
      * @param videoKeStazeni  video, ktere se bude stahovat
      * @param videoStopaNazev nazev video stopy
      * @param audioStopaNazev nazev audio stopy
@@ -244,7 +247,7 @@ public class Stahovani extends Task<String> {
         docasnySoubor = pojmenovatSoubor(videoKeStazeni, true);
         String[] prikaz = new String[]{"ffmpeg", "-y", "-i", videoStopaNazev, "-i", audioStopaNazev, "-c:v", "copy", "-c:a", "copy", docasnySoubor};
 
-        // Pokud je video.mp4 a audio.webm vytvorime output.mp4
+        // Pokud je video.mp4 a audio.webm vytvorime output.mp4 - v poslední verz k tomuto už nedojde
         if (videoKeStazeni.getExtensionVideo().equals("mp4") && videoKeStazeni.getExtensionAudio().equals("webm")) {
             finalniSoubor = pojmenovatSoubor(videoKeStazeni, "mp4", false);
             docasnySoubor = pojmenovatSoubor(videoKeStazeni, "mp4", true);
