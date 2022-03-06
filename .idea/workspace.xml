@@ -27,17 +27,29 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/gui/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/gui/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceStahovani.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceStahovani.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/Stahovani.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/Stahovani.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/VideoAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/VideoAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/main_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/main_window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/o_programu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/o_programu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/YTDownloader-1.1.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/tasks/Stahovani.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/tasks/Stahovani.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/typy/VideoKeStazeni.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/typy/VideoKeStazeni.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-YTDownloader-1.1.7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-YTDownloader-1.1.7.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,12 +136,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="12256703-076a-459c-9863-68e3d2ea213e" />
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
-      </MavenGeneralSettings>
-    </option>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1bXM9HGAvQeITAShdcv2g7sbLeg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -159,27 +167,27 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml" />
       <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
       <recent name="$PROJECT_DIR$/src/eu/davidknotek/ytdownloader/gui" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
-    </key>
   </component>
-  <component name="RunManager" selected="Maven.YTDownloader [javafx:run]">
+  <component name="RunManager" selected="Maven.YTDownloader [package]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -326,7 +334,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <changelist id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="" />
       <created>1359379246138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -601,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605685797066</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Úprava komentářů.">
+      <created>1612101573756</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1612101573756</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,11 +649,9 @@
                   </entry>
                 </map>
               </option>
-              <option name="COLUMN_WIDTH">
+              <option name="COLUMN_ID_WIDTH">
                 <map>
-                  <entry key="2" value="24" />
-                  <entry key="3" value="19" />
-                  <entry key="4" value="19" />
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="24" />
                 </map>
               </option>
             </State>
@@ -646,7 +659,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -654,7 +666,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Rozstrideni projektu do balicku" />
     <MESSAGE value="Pridana moznost vlozeni videa do fronty" />
     <MESSAGE value="Vytvoreni Modelu u comboboxu." />
     <MESSAGE value="Dokonceni fronty. Je moznost odstranovat z fronty, menit pozici..." />
@@ -679,79 +690,7 @@
     <MESSAGE value="Změna výběru audio formátu. Audio formát se vybere automaticky dle video formátu. Drobná oprava." />
     <MESSAGE value="Přidání ikony." />
     <MESSAGE value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
-    <option name="LAST_COMMIT_MESSAGE" value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="507" y="113" width="576" height="705" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1605676406142">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state x="507" y="113" width="576" height="705" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.32.1600.868@0.32.1600.868" timestamp="1605676406142" />
-    <state x="483" y="185" width="624" height="528" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1599030922976">
-      <screen x="0" y="28" width="1600" height="872" />
-    </state>
-    <state x="483" y="185" width="624" height="528" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.28.1600.872@0.28.1600.872" timestamp="1599030922976" />
-    <state x="559" y="330" width="601" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605676550513">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state x="559" y="330" width="601" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.32.1600.868@0.32.1600.868" timestamp="1605676550513" />
-    <state x="335" y="32" width="948" height="870" key="CommitChangelistDialog2" timestamp="1605686135198">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state x="335" y="30" width="948" height="870" key="CommitChangelistDialog2/0.28.1600.872@0.28.1600.872" timestamp="1597148920217" />
-    <state x="335" y="32" key="CommitChangelistDialog2/0.32.1600.868@0.32.1600.868" timestamp="1605686135198" />
-    <state x="679" y="167" width="733" height="464" key="FileChooserDialogImpl" timestamp="1602690295668">
-      <screen x="0" y="28" width="1600" height="872" />
-    </state>
-    <state x="679" y="167" width="733" height="464" key="FileChooserDialogImpl/0.28.1600.872@0.28.1600.872" timestamp="1602690295668" />
-    <state width="1552" height="212" key="GridCell.Tab.0.bottom" timestamp="1605686109315">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1556" height="225" key="GridCell.Tab.0.bottom/0.28.1600.872@0.28.1600.872" timestamp="1602342685856" />
-    <state width="1552" height="212" key="GridCell.Tab.0.bottom/0.32.1600.868@0.32.1600.868" timestamp="1605686109315" />
-    <state width="1552" height="212" key="GridCell.Tab.0.center" timestamp="1605686109314">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1556" height="225" key="GridCell.Tab.0.center/0.28.1600.872@0.28.1600.872" timestamp="1602342685854" />
-    <state width="1552" height="212" key="GridCell.Tab.0.center/0.32.1600.868@0.32.1600.868" timestamp="1605686109314" />
-    <state width="1552" height="212" key="GridCell.Tab.0.left" timestamp="1605686109313">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1556" height="225" key="GridCell.Tab.0.left/0.28.1600.872@0.28.1600.872" timestamp="1602342685853" />
-    <state width="1552" height="212" key="GridCell.Tab.0.left/0.32.1600.868@0.32.1600.868" timestamp="1605686109313" />
-    <state width="1552" height="212" key="GridCell.Tab.0.right" timestamp="1605686109315">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1556" height="225" key="GridCell.Tab.0.right/0.28.1600.872@0.28.1600.872" timestamp="1602342685855" />
-    <state width="1552" height="212" key="GridCell.Tab.0.right/0.32.1600.868@0.32.1600.868" timestamp="1605686109315" />
-    <state width="1552" height="343" key="GridCell.Tab.1.bottom" timestamp="1605683291289">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1552" height="343" key="GridCell.Tab.1.bottom/0.32.1600.868@0.32.1600.868" timestamp="1605683291289" />
-    <state width="1552" height="343" key="GridCell.Tab.1.center" timestamp="1605683291287">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1552" height="343" key="GridCell.Tab.1.center/0.32.1600.868@0.32.1600.868" timestamp="1605683291287" />
-    <state width="1552" height="343" key="GridCell.Tab.1.left" timestamp="1605683291286">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1552" height="343" key="GridCell.Tab.1.left/0.32.1600.868@0.32.1600.868" timestamp="1605683291286" />
-    <state width="1552" height="343" key="GridCell.Tab.1.right" timestamp="1605683291288">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state width="1552" height="343" key="GridCell.Tab.1.right/0.32.1600.868@0.32.1600.868" timestamp="1605683291288" />
-    <state x="468" y="32" width="1053" height="843" key="SettingsEditor" timestamp="1605686192540">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state x="468" y="28" width="1053" height="843" key="SettingsEditor/0.28.1600.872@0.28.1600.872" timestamp="1602776424037" />
-    <state x="468" y="32" key="SettingsEditor/0.32.1600.868@0.32.1600.868" timestamp="1605686192540" />
-    <state x="395" y="199" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1605685813393">
-      <screen x="0" y="32" width="1600" height="868" />
-    </state>
-    <state x="395" y="196" width="800" height="534" key="Vcs.Push.Dialog.v2/0.28.1600.872@0.28.1600.872" timestamp="1597148887421" />
-    <state x="395" y="199" key="Vcs.Push.Dialog.v2/0.32.1600.868@0.32.1600.868" timestamp="1605685813393" />
-    <state width="501" height="260" key="javadoc.popup.new" timestamp="1597147796289">
-      <screen x="0" y="28" width="1600" height="872" />
-    </state>
-    <state width="501" height="260" key="javadoc.popup.new/0.28.1600.872@0.28.1600.872" timestamp="1597147796289" />
+    <MESSAGE value="Úprava komentářů." />
+    <option name="LAST_COMMIT_MESSAGE" value="Úprava komentářů." />
   </component>
 </project>

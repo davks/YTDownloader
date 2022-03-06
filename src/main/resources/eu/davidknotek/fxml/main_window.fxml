@@ -44,7 +44,10 @@
                   <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" text="Video:" />
                   <ComboBox fx:id="cbxVideo" minWidth="-Infinity" onAction="#onVybratVideoFormat" prefHeight="26.0" prefWidth="300.0" />
                   <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" text="Audio" />
-                  <ComboBox fx:id="cbxAudio" minWidth="-Infinity" onAction="#onVybratAudioFormat" prefWidth="250.0" />
+                  <ComboBox fx:id="cbxAudio" minWidth="-Infinity" onAction="#onVybratAudioFormat" prefWidth="250.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></ComboBox>
                   <CheckBox fx:id="chbxZachovatAudioStopu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="29.0" text="Zachovat audio stopu" HBox.hgrow="ALWAYS" />
                   <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onVlozitDoFronty" prefHeight="26.0" prefWidth="95.0" text="Do fronty" HBox.hgrow="NEVER" />
                </children>
@@ -59,6 +62,11 @@
                   <Button fx:id="btnSmazatJeden" mnemonicParsing="false" onAction="#onOdstranitZFronty" prefHeight="32.0" prefWidth="32.0" />
                   <Button fx:id="btnSmazatVse" mnemonicParsing="false" onAction="#onOdstranitVseZFronty" prefHeight="32.0" prefWidth="32.0" />
                   <Pane prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ComboBox fx:id="cbxDownloadTool" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </ComboBox>
                   <Button fx:id="btnZastavit" mnemonicParsing="false" onAction="#onPrerusitStahovani" prefHeight="32.0" prefWidth="32.0" />
                   <Button fx:id="btnStahnout" mnemonicParsing="false" onAction="#onStahnout" prefHeight="32.0" prefWidth="32.0" />
                </children>

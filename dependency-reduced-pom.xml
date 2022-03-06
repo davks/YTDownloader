@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.davidknotek</groupId>
   <artifactId>YTDownloader</artifactId>
-  <version>1.1.7</version>
+  <version>1.1.9</version>
   <build>
     <resources>
       <resource>

@@ -60,6 +60,9 @@ public class MainWindowController implements Initializable {
     private ComboBox<FormatVidea> cbxAudio;
 
     @FXML
+    private ComboBox<String> cbxDownloadTool;
+
+    @FXML
     private ListView<VideoKeStazeni> lvFronta;
 
     @FXML
@@ -124,6 +127,10 @@ public class MainWindowController implements Initializable {
         cbxAudio.setItems(onlyAudioListByExtends);
         lvFronta.setItems(seznamVideiKeStazeni);
 
+        cbxDownloadTool.setItems(FXCollections.observableArrayList("yt-dlp", "youtube-dl"));
+        cbxDownloadTool.getSelectionModel().selectFirst();
+
+
         unbindAnalyzer();
         unbindStahovani();
         videoFormatyCbxModel();
@@ -140,6 +147,7 @@ public class MainWindowController implements Initializable {
         urlVidea = upravUrl(edtUrl.getText().trim());
         if (!urlVidea.trim().equals("")) {
             serviceAnalyzer.setUrl(urlVidea);
+            serviceAnalyzer.setYtDownloadTool(cbxDownloadTool.getValue());
             serviceAnalyzer.restart();
             onlyVideoList.clear();
             onlyAudioList.clear();
@@ -159,6 +167,7 @@ public class MainWindowController implements Initializable {
     void onStahnout(ActionEvent event) {
         if (fronta.getSeznamVideiKeStazeni().size() > 0) {
             serviceStahovani.setFronta(fronta);
+            serviceStahovani.setYtDownloadTool(cbxDownloadTool.getValue());
             serviceStahovani.setCesta(tfCestaUlozit.getText().trim());
             serviceStahovani.restart();
 
@@ -472,9 +481,9 @@ public class MainWindowController implements Initializable {
                     setText(null);
                 } else {
                     String fileSize = item.getFileSize().equals("") ? "*" : item.getFileSize();
-                    setText(item.getAudioQuality() + " / " +
-                            item.getExtension() + " / " +
-                            fileSize);
+                    String audioQuality = item.getAudioQuality().equals("") ? "" : item.getAudioQuality() + " / ";
+                    String extension = item.getExtension().equals("") ? "" : item.getExtension() + " / ";
+                    setText(audioQuality + extension + fileSize);
                 }
             }
         };

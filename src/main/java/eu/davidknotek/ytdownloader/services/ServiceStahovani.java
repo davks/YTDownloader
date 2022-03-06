@@ -12,10 +12,11 @@ public class ServiceStahovani extends Service<String> {
     private String cesta;
     private Label lblUkazatelPrubehu;
     private Label lblZbyvajiciCas;
+    private String ytDownloadTool;
 
     @Override
     protected Task<String> createTask() {
-        Stahovani stahovani = new Stahovani(fronta);
+        Stahovani stahovani = new Stahovani(fronta, ytDownloadTool);
         stahovani.setLblUkazatelPrubehu(lblUkazatelPrubehu);
         stahovani.setLblZbyvajiciCas(lblZbyvajiciCas);
         stahovani.setCesta(cesta);
@@ -28,6 +29,10 @@ public class ServiceStahovani extends Service<String> {
 
     public void setCesta(String cesta) {
         this.cesta = cesta;
+    }
+
+    public void setYtDownloadTool(String ytDownloadTool) {
+        this.ytDownloadTool = ytDownloadTool;
     }
 
     public void setLblUkazatelPrubehu(Label lblUkazatelPrubehu) {

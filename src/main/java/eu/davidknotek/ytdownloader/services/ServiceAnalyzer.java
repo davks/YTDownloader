@@ -11,6 +11,7 @@ import java.util.List;
 public class ServiceAnalyzer extends Service<ObservableList<FormatVidea>> {
 
     private String url;
+    private String ytDownloadTool;
 
     public ServiceAnalyzer() {
     }
@@ -19,9 +20,13 @@ public class ServiceAnalyzer extends Service<ObservableList<FormatVidea>> {
         this.url = url;
     }
 
+    public void setYtDownloadTool(String ytDownloadTool) {
+        this.ytDownloadTool = ytDownloadTool;
+    }
+
     @Override
     protected Task<ObservableList<FormatVidea>> createTask() {
-        VideoAnalyzer videoAnalyzer = new VideoAnalyzer(url);
+        VideoAnalyzer videoAnalyzer = new VideoAnalyzer(url, ytDownloadTool);
         return videoAnalyzer;
     }
 }

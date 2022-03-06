@@ -19,11 +19,12 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
     private final String url;
     private final List<String> errors;
     private final ObservableList<FormatVidea> allFormatList; //seznam formatu jednoho videa
+    private String ytDownloadTool;
 
     /**
      * Konstruktor. Přivede url.
      */
-    public VideoAnalyzer(String url) {
+    public VideoAnalyzer(String url, String ytDownloadTool) {
         /*if (url.contains("&")) {
             this.url = url.substring(0, url.indexOf('&'));
             System.out.println(url.substring(0, url.indexOf('&')));
@@ -32,6 +33,7 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
         }*/
 
         this.url = url;
+        this.ytDownloadTool = ytDownloadTool;
         errors = new ArrayList<>();
         allFormatList = FXCollections.observableArrayList();
     }
@@ -77,7 +79,7 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
         \p{P} – interpunkce
         \p{Z} – prázdná místa
         */
-        List<String> lines = provedPrikaz("youtube-dl", "-e", url);
+        List<String> lines = provedPrikaz(ytDownloadTool, "-e", url);
         if (lines.size() > 0) {
             String n = (lines.get(0)).replaceAll(regex, "").replaceAll(" {2}", " ");
             return n;
@@ -92,7 +94,7 @@ public class VideoAnalyzer extends Task<ObservableList<FormatVidea>> {
      * @throws InterruptedException vyjimka IE
      */
     private void analyzovatURL() throws IOException, InterruptedException {
-        List<String> lines = provedPrikaz("youtube-dl", "-F", url);
+        List<String> lines = provedPrikaz(ytDownloadTool, "-F", url);
         Pattern pFormatCode = Pattern.compile("^([0-9]{2,3}) ");
         Pattern pExtension = Pattern.compile(" (mp4|webm|m4a) ");
         Pattern pResolution = Pattern.compile(" ([0-9]{3,4}x[0-9]{3,4}) ");

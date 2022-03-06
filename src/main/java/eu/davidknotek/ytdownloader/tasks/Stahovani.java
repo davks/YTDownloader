@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class Stahovani extends Task<String> {
 
-    private static final String YOUTUBEDL = "youtube-dl";
+    private String ytDownloadTool;
 
     private Label lblUkazatelPrubehu;
     private Label lblZbyvajiciCas;
@@ -29,8 +29,9 @@ public class Stahovani extends Task<String> {
     private String docasnySoubor;
     private final Fronta fronta;
 
-    public Stahovani(Fronta fronta) {
+    public Stahovani(Fronta fronta, String ytDownloadTool) {
         this.fronta = fronta;
+        this.ytDownloadTool = ytDownloadTool;
     }
 
     /**
@@ -78,14 +79,18 @@ public class Stahovani extends Task<String> {
             if ((videoKeStazeni.getVideoCode() != null) && (!videoKeStazeni.getVideoCode().equals(""))) {
                 updateMessage("Stahuji video: " + videoKeStazeni.getVideoName());
                 videoStopaNazev = pojmenovatDocasnouStopu("video", videoKeStazeni.getVideoCode(), videoKeStazeni.getExtensionVideo());
-                jeStahnutaVideoStopa = stahnout(YOUTUBEDL, "-f", videoKeStazeni.getVideoCode(), videoKeStazeni.getUrl(), "-o", videoStopaNazev);
+                jeStahnutaVideoStopa = stahnout(ytDownloadTool, "-f", videoKeStazeni.getVideoCode(), videoKeStazeni.getUrl(), "-o", videoStopaNazev);
+                Platform.runLater(() -> lblUkazatelPrubehu.setText("100%"));
+                Platform.runLater(() -> lblZbyvajiciCas.setText("00:00"));
             }
 
             // Stahneme audio stopu pokud existuje
             if ((videoKeStazeni.getAudioCode() != null) && (!videoKeStazeni.getAudioCode().equals(""))) {
                 updateMessage("Stahuji audio: " + videoKeStazeni.getVideoName());
                 audioStopaNazev = pojmenovatDocasnouStopu("audio", videoKeStazeni.getAudioCode(), videoKeStazeni.getExtensionAudio());
-                jeStahnutaAudioStopa = stahnout(YOUTUBEDL, "-f", videoKeStazeni.getAudioCode(), videoKeStazeni.getUrl(), "-o", audioStopaNazev);
+                jeStahnutaAudioStopa = stahnout(ytDownloadTool, "-f", videoKeStazeni.getAudioCode(), videoKeStazeni.getUrl(), "-o", audioStopaNazev);
+                Platform.runLater(() -> lblUkazatelPrubehu.setText("100%"));
+                Platform.runLater(() -> lblZbyvajiciCas.setText("00:00"));
             }
 
             // Spojime video a audio stopu pokud jsme je stahli
