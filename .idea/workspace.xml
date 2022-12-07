@@ -33,23 +33,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka.">
+    <list default="true" id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="Přidání yt-dlp a možnost volby.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/gui/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/gui/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceStahovani.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/services/ServiceStahovani.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/Stahovani.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/Stahovani.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/VideoAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/davidknotek/ytdownloader/tasks/VideoAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/main_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/main_window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/o_programu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eu/davidknotek/fxml/o_programu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/YTDownloader-1.1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/tasks/Stahovani.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/tasks/Stahovani.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/typy/VideoKeStazeni.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eu/davidknotek/ytdownloader/typy/VideoKeStazeni.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-YTDownloader-1.1.7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-YTDownloader-1.1.7.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,34 +134,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="OverrideImplement.combined" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "/home/davidk/Workspace/Java/YTDownloader"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/eu/davidknotek" />
@@ -187,7 +151,7 @@
       <recent name="$PROJECT_DIR$/src/eu/davidknotek/ytdownloader/gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.YTDownloader [package]">
+  <component name="RunManager" selected="Application.SuperMain">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -236,6 +200,20 @@
       </extension>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SuperMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="eu.davidknotek.ytdownloader.SuperMain" />
+      <module name="YTDownloader" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eu.davidknotek.ytdownloader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -327,6 +305,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SuperMain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -616,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612101573756</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Přidání yt-dlp a možnost volby.">
+      <created>1646557710125</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1646557710125</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,7 +656,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Pridana moznost vlozeni videa do fronty" />
     <MESSAGE value="Vytvoreni Modelu u comboboxu." />
     <MESSAGE value="Dokonceni fronty. Je moznost odstranovat z fronty, menit pozici..." />
     <MESSAGE value="Prvni nástřel stahování souborů." />
@@ -691,6 +680,7 @@
     <MESSAGE value="Přidání ikony." />
     <MESSAGE value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
     <MESSAGE value="Úprava komentářů." />
-    <option name="LAST_COMMIT_MESSAGE" value="Úprava komentářů." />
+    <MESSAGE value="Přidání yt-dlp a možnost volby." />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidání yt-dlp a možnost volby." />
   </component>
 </project>
