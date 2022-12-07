@@ -33,8 +33,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="Přidání yt-dlp a možnost volby.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1ab6b0f5-c72e-4bcb-89c6-be248cce9cae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +135,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "/home/davidk/Workspace/Java/YTDownloader"
   }
@@ -606,7 +606,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646557710125</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Editace souborů idea projektu.">
+      <created>1670428378114</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1670428378114</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Přidání souboru jpa-buddy.xml">
+      <created>1670428445534</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1670428445534</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,8 +670,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Vytvoreni Modelu u comboboxu." />
-    <MESSAGE value="Dokonceni fronty. Je moznost odstranovat z fronty, menit pozici..." />
     <MESSAGE value="Prvni nástřel stahování souborů." />
     <MESSAGE value="Stahování souborů je kompletní. Spojuje video a audio stopy." />
     <MESSAGE value="Verze 1.0. Funguje stahování, spojování stop, konfigurace se ukládád do souboru." />
@@ -681,6 +693,8 @@
     <MESSAGE value="Převedeno na Maven projekt. Odstranění Ikonli a přidání vlastních obrázků na tlačítka." />
     <MESSAGE value="Úprava komentářů." />
     <MESSAGE value="Přidání yt-dlp a možnost volby." />
-    <option name="LAST_COMMIT_MESSAGE" value="Přidání yt-dlp a možnost volby." />
+    <MESSAGE value="Editace souborů idea projektu." />
+    <MESSAGE value="Přidání souboru jpa-buddy.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidání souboru jpa-buddy.xml" />
   </component>
 </project>
